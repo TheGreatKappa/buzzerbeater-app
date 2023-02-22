@@ -61,9 +61,9 @@ class ForumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Forum $forum)
     {
-        //
+        return Inertia::render('Forums/Edit', compact('forum'));
     }
 
     /**
@@ -73,9 +73,11 @@ class ForumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ForumStoreRequest $request, Forum $forum)
     {
-        //
+        $forum->update($request->validated());
+
+        return to_route('forums.index');
     }
 
     /**

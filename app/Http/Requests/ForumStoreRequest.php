@@ -26,8 +26,6 @@ class ForumStoreRequest extends FormRequest
         return [
             'name' => ['required', 'unique:forums'],
 
-            'slug' => ['required', 'unique:forums'],
-
             'description' => ['required', 'min:3']
         ];
     }

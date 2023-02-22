@@ -35,12 +35,12 @@ export default function Dashboard(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {forums.map(({ name, slug }) => (
+                                {forums.map(({ id, name, slug }) => (
                                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <th scope="row" className="px-6 py-4">{ name }</th>
                                             <td className="px-6 py-4">{ slug }</td>
-                                            <td class="px-6 py-4 text-right">
-                                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                            <td className="px-6 py-4 text-right">
+                                                <Link href={route('forums.edit', id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
                                             </td>
                                         </tr>
                                     ))}
