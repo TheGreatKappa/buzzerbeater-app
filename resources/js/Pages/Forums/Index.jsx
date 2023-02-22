@@ -41,6 +41,7 @@ export default function Dashboard(props) {
                                             <td className="px-6 py-4">{ slug }</td>
                                             <td className="px-6 py-4 text-right">
                                                 <Link href={route('forums.edit', id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                                                <Link href={route('forums.destroy', id)} method="delete" className="ml-4 font-medium text-red-600 dark:text-red-500 hover:underline">Delete</Link>
                                             </td>
                                         </tr>
                                     ))}
