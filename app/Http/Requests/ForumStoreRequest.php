@@ -13,7 +13,7 @@ class ForumStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class ForumStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'unique:forums'],
+
+            'slug' => ['required', 'unique:forums'],
+
+            'description' => ['required', 'min:3']
         ];
     }
 }

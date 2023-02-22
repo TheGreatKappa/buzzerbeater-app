@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ForumStoreRequest;
+use App\Models\Forum;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +16,7 @@ class ForumController extends Controller
      */
     public function index()
     {
-        //
+        return 'cool';
     }
 
     /**
@@ -33,9 +35,11 @@ class ForumController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ForumStoreRequest $request)
     {
-        //
+        Forum::create($request->validated() + ['user_id' => auth()->id()]);
+        
+        return to_route('forums.index');
     }
 
     /**
