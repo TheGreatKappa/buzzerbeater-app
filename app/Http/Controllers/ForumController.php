@@ -16,7 +16,9 @@ class ForumController extends Controller
      */
     public function index()
     {
-        $forums = Forum::all();
+        /*$forums = Forum::all();*/
+
+        $forums = Forum::paginate(5);
 
         return Inertia::render('Forums/Index', compact('forums'));
     }

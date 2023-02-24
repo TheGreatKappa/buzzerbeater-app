@@ -35,7 +35,7 @@ export default function Dashboard(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {forums.map(({ id, name, slug }) => (
+                                {forums.data.map(({ id, name, slug }) => (
                                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <th scope="row" className="px-6 py-4">{ name }</th>
                                             <td className="px-6 py-4">{ slug }</td>
@@ -58,6 +58,9 @@ export default function Dashboard(props) {
                                     )}
                             </tbody>
                         </table>
+                        <div className="m-2 p-2">
+                            Here lies pagination
+                        </div>
                     </div>
                 </div>
             </div>
