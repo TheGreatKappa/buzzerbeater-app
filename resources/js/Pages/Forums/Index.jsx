@@ -1,10 +1,9 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, usePage } from '@inertiajs/react';
+import Pagination from '@/Components/Pagination';
 
 export default function Dashboard(props) {
     const { forums } = usePage().props;
-
-    console.log(forums);
 
     return (
         <AuthenticatedLayout
@@ -58,9 +57,7 @@ export default function Dashboard(props) {
                                     )}
                             </tbody>
                         </table>
-                        <div className="m-2 p-2">
-                            Here lies pagination
-                        </div>
+                            <Pagination links={forums.links} />
                     </div>
                 </div>
             </div>
