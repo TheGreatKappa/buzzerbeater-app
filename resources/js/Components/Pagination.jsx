@@ -4,7 +4,7 @@ export default function Pagination({ links }) {
   
     function getClassName(active) {
         if(active) {
-            return "mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary bg-blue-500 text-white";
+            return "mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-blue-400 focus:border-primary focus:text-primary bg-blue-500 text-white";
         } else{
             return "mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary";
         }
