@@ -14,16 +14,18 @@ export default function Pagination({ links }) {
         links.length > 3 && (
             <div className="mb-2">
                 <div className="flex flex-wrap mt-4 ml-2">
-                    {links.map((link, key) => (
+                    {links.map((link) => (
                             link.url === null ?
                                     (<div
                                             className="mr-1 mb-1 px-4 py-3 text-sm leading-4 text-gray-400 border rounded"
-                                        >{link.label}</div>) :
+                                            dangerouslySetInnerHTML={{ __html: link.label }}
+                                        ></div>) :
   
                                     (<Link
                                                 className={getClassName(link.active)}
                                                 href={ link.url }
-                                            >{link.label}</Link>)
+                                                dangerouslySetInnerHTML={{ __html: link.label }}
+                                            ></Link>)
                                     ))}
                 </div>
             </div>
