@@ -3,6 +3,7 @@
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\CommunityPostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,12 +30,17 @@ Route::get('/', function () {
 
 Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
 
+Route::get('/api', function () {
+    return Inertia::render('Api');
+})->name('api');
+
 Route::group(['middleware' => ['auth', 'verified',]], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
     Route::resource('dashboard/forums', ForumController::class);
+    Route::resource('dashboard/forums.posts', CommunityPostController::class);
 });
 
 Route::middleware('auth')->group(function () {

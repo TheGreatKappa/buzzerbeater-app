@@ -1,25 +1,30 @@
 import GuestLayout from '@/Layouts/GuestLayout';
-import { usePage } from '@inertiajs/react';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import { usePage, Link } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton';
 
 export default function Show(props){
      const { community } = usePage().props;
-     const isLoggedin = props.auth.user;
+     const isLoggedIn = Boolean(props.auth.user == null);
 
-     console.log(community);
-     console.log(isLoggedin);
-
-     if (isLoggedin) {
-          return (
-               <GuestLayout>
-                    <p>Welcome to {community.name} forum!</p>
-                    <PrimaryButton>Create Post</PrimaryButton>
-               </GuestLayout>
-          );
-     }
+     console.log({community});
+     console.log(isLoggedIn);
+ 
      return (
-          <GuestLayout>
-               <p>Welcome to {community.name} forum!</p>
-          </GuestLayout>
-     )
+         <>
+             {isLoggedIn ? (
+                 <GuestLayout>
+                    <p>Welcome to {community.name} forum!</p>
+                 </GuestLayout>
+             ) : (
+                 <AuthenticatedLayout
+                     auth={props.auth}
+                     errors={props.errors}
+                 >
+                    <p>Welcome to {community.name} forum!</p>
+                    <Link href={route('forums.posts.create', community.name)}><PrimaryButton>Create Post</PrimaryButton></Link>
+                 </AuthenticatedLayout>
+             )}
+         </>
+     );
 }

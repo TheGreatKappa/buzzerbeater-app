@@ -14,6 +14,13 @@ export default function Authenticated({header, children }) {
                                     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink href={route('api')} active={route().current('api')}>
+                                    API
+                                </NavLink>
+                            </div>
+
                         </div>
                     </div>
                 </div>

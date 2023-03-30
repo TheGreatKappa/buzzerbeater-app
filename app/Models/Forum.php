@@ -25,4 +25,14 @@ class Forum extends Model
             ]
         ];
     }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

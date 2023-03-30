@@ -9,10 +9,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Create(props){
+    console.log(props.forum);
+
     const {data, processing, errors, setData, post} = useForm({
-        'name': '',
+        'title': '',
+        'url': '',
         'description': '',
-        'slug': '',
     });
 
     const onHandleChange = (event) => {
@@ -22,10 +24,15 @@ export default function Create(props){
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('forums.index'), {
+        post(route('forums.posts.index', { forum: props.forum.name } ), {
             onSuccess: () => {
                 toast.success('XD!');
-            }
+            },
+            onError: (errors) => {
+                Object.keys(errors).forEach((key) => {
+                    toast.error(errors[key]);
+                });
+            },
         });
     };
 
@@ -33,9 +40,9 @@ export default function Create(props){
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Create Forum</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Create Post</h2>}
         >
-            <Head title="Create Forum" />
+            <Head title="Create Post" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -43,20 +50,35 @@ export default function Create(props){
                     <div className="max-w-md mx-auto bg-white m-2 p-6">
                         <form onSubmit={submit}>
                             <div>
-                                <InputLabel forInput="name" value="Name" />
+                                <InputLabel forInput="title" value="Title" />
 
                                 <TextInput
-                                    id="name"
-                                    name="name"
-                                    value={data.name}
+                                    id="title"
+                                    name="title"
+                                    value={data.title}
                                     className="mt-1 block w-full"
-                                    autoComplete="name"
+                                    autoComplete="title"
                                     isFocused={true}
                                     handleChange={onHandleChange}
                                     required
                                 />
 
-                                <InputError message={errors.name} className="mt-2" />
+                                <InputError message={errors.title} className="mt-2" />
+                            </div>
+
+                            <div className="mt-4">
+                                <InputLabel forInput="url" value="Url" />
+
+                                <TextInput
+                                    id="url"
+                                    name="url"
+                                    value={data.url}
+                                    className="mt-1 block w-full"
+                                    autoComplete="url"
+                                    handleChange={onHandleChange}
+                                />
+
+                                <InputError message={errors.url} className="mt-2" />
                             </div>
 
                             <div className="mt-4">
@@ -69,7 +91,6 @@ export default function Create(props){
                                     className="mt-1 block w-full"
                                     autoComplete="description"
                                     handleChange={onHandleChange}
-                                    required
                                 />
 
                                 <InputError message={errors.description} className="mt-2" />

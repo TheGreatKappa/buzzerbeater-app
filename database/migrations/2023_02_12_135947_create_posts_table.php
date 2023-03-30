@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreignID('user_id')->constrained();
             $table->foreignID('forum_id')->constrained();
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('slug')->unique();
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
