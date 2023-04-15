@@ -11,7 +11,7 @@ export default function Pagination({ links }) {
     }
   
     return (
-        links.length > 3 && (
+        links && links.length > 3 && (
             <div className="mb-2">
                 <div className="flex flex-wrap mt-4 ml-2">
                     {links.map((link) => (

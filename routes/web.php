@@ -30,9 +30,9 @@ Route::get('/', function () {
 
 Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
 
-Route::get('/api', function () {
-    return Inertia::render('Api');
-})->name('api');
+Route::get('/results', function () {
+    return Inertia::render('ApiPage');
+})->name('results');
 
 Route::group(['middleware' => ['auth', 'verified',]], function () {
     Route::get('/dashboard', function () {
