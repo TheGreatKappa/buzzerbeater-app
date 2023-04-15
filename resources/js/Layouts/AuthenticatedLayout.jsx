@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
+import Footer from '@/Components/Footer';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 
@@ -29,6 +30,9 @@ export default function Authenticated({ auth, header, children }) {
                                 </NavLink>
                                 <NavLink href={route('results')} active={route().current('results')}>
                                     Results
+                                </NavLink>
+                                <NavLink href={route('stats')} active={route().current('stats')}>
+                                    Stats
                                 </NavLink>
                             </div>
                         </div>
@@ -101,6 +105,15 @@ export default function Authenticated({ auth, header, children }) {
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('forums.index')} active={route().current('forums.index')}>
+                            Forums
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('results')} active={route().current('results')}>
+                            Results
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('stats')} active={route().current('stats')}>
+                            Stats
+                        </ResponsiveNavLink>
                     </div>
 
                     <div className="pt-4 pb-1 border-t border-gray-200">
@@ -128,6 +141,9 @@ export default function Authenticated({ auth, header, children }) {
             )}
 
             <main>{children}</main>
+            {showingNavigationDropdown ? null : (
+                <Footer />
+            )}
         </div>
     );
 }

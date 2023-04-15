@@ -34,6 +34,10 @@ Route::get('/results', function () {
     return Inertia::render('ApiPage');
 })->name('results');
 
+Route::get('/stats', function () {
+    return Inertia::render('Stats');
+})->name('stats');
+
 Route::group(['middleware' => ['auth', 'verified',]], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
