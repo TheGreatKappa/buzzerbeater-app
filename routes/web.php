@@ -4,6 +4,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\CommunityPostController;
+use App\Http\Controllers\FrontendPostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,19 +30,20 @@ Route::get('/', function () {
 });
 
 Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
-
-Route::get('/results', function () {
-    return Inertia::render('ApiPage');
-})->name('results');
-
-Route::get('/stats', function () {
-    return Inertia::render('Stats');
-})->name('stats');
+Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');
 
 Route::group(['middleware' => ['auth', 'verified',]], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::get('/results', function () {
+        return Inertia::render('ApiPage');
+    })->name('results');
+
+    Route::get('/stats', function () {
+        return Inertia::render('Stats');
+    })->name('stats');
 
     Route::resource('dashboard/forums', ForumController::class);
     Route::resource('dashboard/forums.posts', CommunityPostController::class);

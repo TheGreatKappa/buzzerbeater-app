@@ -87,7 +87,6 @@ export default function API(props) {
                                                 Visitor Team
                                             </th>
                                             <th scope="col" className="px-6 py-3">
-                                                Részletes statisztika
                                             </th>
                                         </tr>
                                     </thead>
@@ -98,7 +97,7 @@ export default function API(props) {
                                                     <td className="px-6 py-4">{ home_team.full_name }</td>
                                                     <td className="px-6 py-4">{ home_team_score } - { visitor_team_score }</td>
                                                     <td className="px-6 py-4">{ visitor_team.full_name }</td>
-                                                    <td><Link href={`https://www.basketball-reference.com/boxscores/${new Date(date).toISOString().split('T')[0].replace(/-/g, '')}0${home_team.abbreviation}.html`} className="font-medium bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Részletes statisztika</Link></td>
+                                                    <td><Link href={`https://www.basketball-reference.com/boxscores/${new Date(date).toISOString().split('T')[0].replace(/-/g, '')}0${home_team.abbreviation}.html`} className="font-medium bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Részletek</Link></td>
                                                 </tr>
                                             ))}
         
