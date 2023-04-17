@@ -22,6 +22,6 @@ class CommunityPostController extends Controller
             'url' => $request->input('url'),
         ]);
 
-        return to_route('forums.index');
+        return Redirect::route('community.show', $forum->slug);
     }
 }

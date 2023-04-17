@@ -60,7 +60,7 @@ export default function Show(props){
                                     <span className="ml-1">{ username }</span>
                                     </div>
                                 </div>
-                                <a href="#" className="text-2xl font-bold">{ title }</a>
+                                <a className="text-2xl font-bold">{ title }</a>
                                 <p>{ description }</p>
                                 <div className="flex m-2 p-2">
                                 <p className="mr-4 p-2">Comments</p>
