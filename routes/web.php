@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\CommunityPostController;
 use App\Http\Controllers\FrontendPostController;
+use App\Http\Controllers\MatchController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,6 +38,8 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
 
     Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');
 
+    Route::get('details/{id}', [MatchController::class, 'show'])->name('details.show');
+
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
@@ -49,9 +52,11 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
         return Inertia::render('Stats');
     })->name('stats');
 
-    Route::get('/details', function () {
+    /*Route::get('/details{id}', function () {
         return Inertia::render('MatchDetails');
-    })->name('details');
+    })->name('details');*/
+
+
 
     Route::resource('dashboard/forums', ForumController::class);
     Route::resource('dashboard/forums.posts', CommunityPostController::class);

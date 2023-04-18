@@ -84,7 +84,7 @@ export default function API(props) {
                                                 <td className="px-6 py-4">{ home_team.full_name }</td>
                                                 <td className="px-6 py-4">{ home_team_score } - { visitor_team_score }</td>
                                                 <td className="px-6 py-4">{ visitor_team.full_name }</td>
-                                                <td><Link href={route('details', date + home_team.abbreviation + visitor_team.abbreviation)}className="font-medium bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Részletek</Link></td>
+                                                <td><Link href={route('details.show', id)} className="font-medium bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Részletek</Link></td>
                                             </tr>
                                         ))}
     
