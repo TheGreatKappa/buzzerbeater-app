@@ -29,10 +29,14 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
-Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');
+//Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
+//Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');
 
 Route::group(['middleware' => ['auth', 'verified',]], function () {
+    Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
+
+    Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');
+
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
@@ -44,6 +48,10 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
     Route::get('/stats', function () {
         return Inertia::render('Stats');
     })->name('stats');
+
+    Route::get('/details', function () {
+        return Inertia::render('MatchDetails');
+    })->name('details');
 
     Route::resource('dashboard/forums', ForumController::class);
     Route::resource('dashboard/forums.posts', CommunityPostController::class);
