@@ -42,8 +42,8 @@ export default function Show(props){
             <div>
                 <PrimaryButton className='timeSorted'>Sort by new</PrimaryButton>
             </div>
-            <section className='flex md:flex-row m-2 p-2'>
-                <div className='w-8/12'>
+            <section className='flex flex-col md:flex-row m-2 p-2'>
+                <div className='w-full md:w-8/12'>
                 {posts.data.map(({ id, title, description, username, slug }) => (
                     <div className="m-3 p-6 max-w-4xl bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="mr-4">Upvote</div>
@@ -63,7 +63,7 @@ export default function Show(props){
                     </div>
                 ))}
                 </div>
-                <div className='w-4/12 p-4'>
+                <div className='w-full md:w-4/12 p-4'>
                     <div className="m-2 p-2 bg-slate-500 text-white">
                         <h2>Other communities</h2>
                     </div>

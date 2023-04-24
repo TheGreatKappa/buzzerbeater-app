@@ -22,7 +22,7 @@ export default function Create(props){
     const submit = (e) => {
         e.preventDefault();
 
-        put(route('forums.update', forum.id));
+        put(route('forums.update', forum.name));
     };
 
     return(

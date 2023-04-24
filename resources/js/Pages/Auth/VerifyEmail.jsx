@@ -16,19 +16,19 @@ export default function VerifyEmail({ status }) {
             <Head title="Email Verification" />
 
             <div className="mb-4 text-sm text-gray-600">
-                Thanks for signing up! Before getting started, could you verify your email address by clicking on the
-                link we just emailed to you? If you didn't receive the email, we will gladly send you another.
+                Köszönjük regisztrációdat! Mielőtt belekezdenél az oldalon való böngészésbe, kérjük erősítsd meg az e-mail címed az általunk
+                küldött e-mailben található linkre kattintva. Ha nem kaptál e-mailt, küldünk egy újat.
             </div>
 
             {status === 'verification-link-sent' && (
                 <div className="mb-4 font-medium text-sm text-green-600">
-                    A new verification link has been sent to the email address you provided during registration.
+                    Egy új e-mailt küldtünk a megadott címre. Kérjük ellenőrizd a spam mappát is.
                 </div>
             )}
 
             <form onSubmit={submit}>
                 <div className="mt-4 flex items-center justify-between">
-                    <PrimaryButton processing={processing}>Resend Verification Email</PrimaryButton>
+                    <PrimaryButton processing={processing}>Megerősítő e-mail újraküldése</PrimaryButton>
 
                     <Link
                         href={route('logout')}
@@ -36,7 +36,7 @@ export default function VerifyEmail({ status }) {
                         as="button"
                         className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                        Log Out
+                        Kijelentkezés
                     </Link>
                 </div>
             </form>

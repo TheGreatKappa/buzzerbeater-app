@@ -6,6 +6,7 @@ use App\Http\Requests\PostStoreRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Forum;
+use App\Models\Post;
 use Inertia\Inertia;
 
 class CommunityPostController extends Controller
@@ -21,6 +22,22 @@ class CommunityPostController extends Controller
             'description' => $request->input('description'),
             'url' => $request->input('url'),
         ]);
+
+        return Redirect::route('community.show', $forum->slug);
+    }
+
+    public function edit(Forum $forum, Post $post){
+        return Inertia::render('Forums/Posts/Edit', compact('forum', 'post'));
+    }
+
+    public function update(PostStoreRequest $request, Forum $forum, Post $post){
+        $post->update($request->validated());
+
+        return Redirect::route('community.show', [$forum->slug, $post->slug]);
+    }
+
+    public function destroy(Forum $forum, Post $post){
+        $post->delete();
 
         return Redirect::route('community.show', $forum->slug);
     }

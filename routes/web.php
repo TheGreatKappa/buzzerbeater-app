@@ -52,12 +52,6 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
         return Inertia::render('Stats');
     })->name('stats');
 
-    /*Route::get('/details{id}', function () {
-        return Inertia::render('MatchDetails');
-    })->name('details');*/
-
-
-
     Route::resource('dashboard/forums', ForumController::class);
     Route::resource('dashboard/forums.posts', CommunityPostController::class);
 });

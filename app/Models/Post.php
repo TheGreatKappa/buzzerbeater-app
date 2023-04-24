@@ -30,6 +30,11 @@ class Post extends Model
         ];
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+    
     function user()
     {
         return $this->belongsTo(User::class);

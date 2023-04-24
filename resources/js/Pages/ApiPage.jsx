@@ -6,10 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function API(props) {
-    const isLoggedIn = Boolean(props.auth.user == null);
     const [games, setGames] = useState([]);
-
-    console.log(isLoggedIn);
 
     useEffect(() => {
         const searchButton = document.querySelector('.SearchButton');
