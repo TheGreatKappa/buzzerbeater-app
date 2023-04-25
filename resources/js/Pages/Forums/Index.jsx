@@ -41,8 +41,8 @@ export default function Dashboard(props) {
                                             <th scope="row" className="px-6 py-4"><Link href={`/forum/${slug}`}>{ name }</Link></th>
                                             <td className="px-6 py-4">{ slug }</td>
                                             <td className="px-6 py-4 text-right">
-                                                <Link href={route('forums.edit', name)} className="font-medium bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Edit</Link>
-                                                <Link href={route('forums.destroy', name)} method="delete" className="ml-4 font-medium bg-red-500 hover:bg-red-400 text-white py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Delete</Link>
+                                                <Link href={route('forums.edit', slug)} className="font-medium bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Edit</Link>
+                                                <Link href={route('forums.destroy', slug)} method="delete" className="ml-4 font-medium bg-red-500 hover:bg-red-400 text-white py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Delete</Link>
                                             </td>
                                         </tr>
                                     ))}

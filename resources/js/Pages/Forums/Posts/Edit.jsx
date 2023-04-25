@@ -12,8 +12,9 @@ export default function Create(props){
     console.log(post);
 
     const {data, processing, errors, setData, put} = useForm({
-        'name': forum.name || '',
-        'description': forum.description || '',
+        'title': post.title || '',
+        'url': post.url || '',
+        'description': post.description || '',
     });
 
     const onHandleChange = (event) => {
@@ -23,7 +24,7 @@ export default function Create(props){
     const submit = (e) => {
         e.preventDefault();
 
-        put(route('forums.posts.update', [forum.name, post.slug]));
+        put(route('forums.posts.update', [forum.slug, post.slug]));
     };
 
     return(

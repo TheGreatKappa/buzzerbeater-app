@@ -5,7 +5,7 @@ import Pagination from '@/Components/Pagination';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function Stats(props){
+export default function Live(props){
     const [players, setPlayers] = useState([]);
 
     useEffect(() => {

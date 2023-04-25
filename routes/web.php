@@ -48,9 +48,9 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
         return Inertia::render('ApiPage');
     })->name('results');
 
-    Route::get('/stats', function () {
-        return Inertia::render('Stats');
-    })->name('stats');
+    Route::get('/live', function () {
+        return Inertia::render('Live');
+    })->name('live');
 
     Route::resource('dashboard/forums', ForumController::class);
     Route::resource('dashboard/forums.posts', CommunityPostController::class);
