@@ -57,7 +57,7 @@ export default function Show(props){
                             <p>{ description }</p>
                             <div className="flex m-2 p-2">
                             <p className="mr-4 p-2">Comments</p>
-                                <Link href={route('posts.show', [community.name, slug])} className="inline-flex items-center text-sm text-center px-2 py-3">Read More</Link>
+                                <Link href={route('posts.show', [community.slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3">Read More</Link>
                             </div>
                         </div>
                     </div>

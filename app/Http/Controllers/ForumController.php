@@ -16,7 +16,7 @@ class ForumController extends Controller
      */
     public function index()
     {
-        $forums = Forum::paginate(5);
+        $forums = Forum::where('user_id', auth()->id())->paginate(5);
 
         return Inertia::render('Forums/Index', compact('forums'));
     }

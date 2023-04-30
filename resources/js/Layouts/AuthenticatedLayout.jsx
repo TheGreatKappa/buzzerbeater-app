@@ -15,23 +15,20 @@ export default function Authenticated({ auth, header, children }) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
-                                <Link href="/">
+                                <Link href={route('forums.index')}>
                                     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Dashboard
-                                </NavLink>
                                 <NavLink href={route('forums.index')} active={route().current('forums.index')}>
-                                    Forums
+                                    Fórumok
                                 </NavLink>
                                 <NavLink href={route('results')} active={route().current('results')}>
-                                    Results
+                                    Eredmények
                                 </NavLink>
                                 <NavLink href={route('live')} active={route().current('live')}>
-                                    Live
+                                    ÉLŐ
                                 </NavLink>
                             </div>
                         </div>
@@ -64,9 +61,9 @@ export default function Authenticated({ auth, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
+                                        <Dropdown.Link href={route('profile.edit')}>Profilod</Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
-                                            Log Out
+                                            Kijelentkezés
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
@@ -101,17 +98,14 @@ export default function Authenticated({ auth, header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Dashboard
-                        </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('forums.index')} active={route().current('forums.index')}>
-                            Forums
+                            Fórumok
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('results')} active={route().current('results')}>
-                            Results
+                            Eredmények
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('live')} active={route().current('live')}>
-                            Live
+                            Élő
                         </ResponsiveNavLink>
                     </div>
 
@@ -124,9 +118,9 @@ export default function Authenticated({ auth, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
+                            <ResponsiveNavLink href={route('profile.edit')}>Profilod</ResponsiveNavLink>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
-                                Log Out
+                                Kijelentkezés
                             </ResponsiveNavLink>
                         </div>
                     </div>

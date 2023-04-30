@@ -7,14 +7,25 @@ export default function Show(props) {
     const { matchStatistics } = usePage().props;
     const [stats, setStats] = useState([]);
 
+    let homeTeamName = '';
+    let awayTeamName = '';
+    let homeTeamScore = 0;
+    let awayTeamScore = 0;
+    let matchDate = '';
+
     useEffect(() => {
-        setStats(matchStatistics.data);
+        if (matchStatistics){
+            setStats(matchStatistics.data);
+        }
     }, [matchStatistics]);
 
-    const playersByTeam = stats.reduce((acc, { team, player, fga, fgm, fg3a, fg3m, fta, ftm, pts, min, reb, ast }) => {
+    const playersByTeam = stats.reduce((acc, { team, player, game, fga, fgm, fg3a, fg3m, fta, ftm, pts, min, reb, ast }) => {
         if (!acc[team.id]) {
           acc[team.id] = {
             name: team.full_name,
+            habitat: team.id === game.home_team_id ? 'home' : 'away',
+            score: team.id === game.home_team_id ? game.home_team_score : game.visitor_team_score,
+            match_date: new Date(game.date).toLocaleDateString(),
             players: [],
             total: {
                 fga: 0,
@@ -46,15 +57,33 @@ export default function Show(props) {
         
         return acc
     },  {})
+ 
+    console.log(playersByTeam);
 
-    console.log(stats);
+    const homeTeam = Object.values(playersByTeam).find(team => team.habitat === 'home');
+    const awayTeam = Object.values(playersByTeam).find(team => team.habitat === 'away');
+
+    if(typeof homeTeam !== 'undefined' && typeof awayTeam !== 'undefined'){
+        homeTeamName = homeTeam.name;
+        awayTeamName = awayTeam.name;
+
+        homeTeamScore = homeTeam.score;
+        awayTeamScore = awayTeam.score;
+
+        matchDate = homeTeam.match_date;
+    }
+
     return (
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
+            header={
+            <div className="justify-center items-center flex">
+
+            </div>
+            }
         >
-            <Head title="Dashboard" />
+            <Head title={`${homeTeamName} - ${awayTeamName}`} />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -130,7 +159,7 @@ export default function Show(props) {
                                                             className="px-6 py-4 border-t"
                                                             colSpan="4"
                                                         >
-                                                            No details for the match you've been looking for.
+                                                            Az általad keresett mérkőzéshez nem találtunk részleteket.
                                                         </td>
                                                     </tr>
                                                 )}

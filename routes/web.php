@@ -40,10 +40,6 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
 
     Route::get('details/{id}', [MatchController::class, 'show'])->name('details.show');
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-
     Route::get('/results', function () {
         return Inertia::render('ApiPage');
     })->name('results');
@@ -52,8 +48,8 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
         return Inertia::render('Live');
     })->name('live');
 
-    Route::resource('dashboard/forums', ForumController::class);
-    Route::resource('dashboard/forums.posts', CommunityPostController::class);
+    Route::resource('/forums', ForumController::class);
+    Route::resource('/forums.posts', CommunityPostController::class);
 });
 
 Route::middleware('auth')->group(function () {

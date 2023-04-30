@@ -37,8 +37,8 @@ export default function API(props) {
                 auth={props.auth}
                 errors={props.errors}
                 header={<>
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">API</h2>
-                <p className="mt-2">Words</p>
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight">Eredménykereső</h2>
+                <p className="mt-2 text-gray-500">Az eredménykereső segítségével tehetsz egy utazást a múltba, egészen az 1979-es szezonig bezárólag.</p>
                 </>}
             >
                 <div className="py-12 flex items-center justify-center">
@@ -59,16 +59,16 @@ export default function API(props) {
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" className="px-6 py-3">
-                                            Date
+                                            Dátum
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Home Team
+                                            Hazai csapat
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Score
+                                            Eredmény
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Visitor Team
+                                            Vendég csapat
                                         </th>
                                         <th scope="col" className="px-6 py-3">
                                         </th>
@@ -91,7 +91,7 @@ export default function API(props) {
                                                     className="px-6 py-4 border-t"
                                                     colSpan="4"
                                                 >
-                                                    No games found or the date you've been searching for had no games.
+                                                    A keresett napon nem találtunk mérkőzést. 
                                                 </td>
                                             </tr>
                                         )}

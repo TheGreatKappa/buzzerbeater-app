@@ -12,7 +12,7 @@
                 <img src="{{ url('storage/notfound.gif')}}" class="rounded-lg" />
                 <h1 class="mt-4 text-2xl">A keresett oldal nem található.</h1>
                 <p class="mt-4">Hogy én, a fejlesztő, vagy te hibáztál, az remek kérdés.<br> Mindenesetre valószínűleg nem ezt az oldalt keresed.</p>
-                <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mt-4" onclick="window.location='{{ url('/')}}'">
+                <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mt-4" onclick="window.location='{{ route('forums.index')}}'">
                     Vissza a kezdőlapra
                 </button>
             </div>
