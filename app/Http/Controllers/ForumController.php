@@ -62,7 +62,9 @@ class ForumController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Forum $forum)
-    {
+    {   
+        $this->authorize('update', $forum);
+
         return Inertia::render('Forums/Edit', compact('forum'));
     }
 
@@ -74,7 +76,9 @@ class ForumController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ForumStoreRequest $request, Forum $forum)
-    {
+    {   
+        $this->authorize('update', $forum);
+
         $forum->update($request->validated());
 
         return to_route('forums.index');
@@ -88,6 +92,8 @@ class ForumController extends Controller
      */
     public function destroy(Forum $forum)
     {
+        $this->authorize('delete', $forum);
+
         $forum->delete();
 
         return to_route('forums.index');

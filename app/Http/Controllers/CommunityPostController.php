@@ -27,16 +27,22 @@ class CommunityPostController extends Controller
     }
 
     public function edit(Forum $forum, Post $post){
+        $this -> authorize('update', $post);
+
         return Inertia::render('Forums/Posts/Edit', compact('forum', 'post'));
     }
 
     public function update(PostStoreRequest $request, Forum $forum, Post $post){
+        $this -> authorize('update', $post);
+
         $post->update($request->validated());
 
         return Redirect::route('community.show', [$forum->slug, $post->slug]);
     }
 
     public function destroy(Forum $forum, Post $post){
+        $this -> authorize('delete', $post);
+        
         $post->delete();
 
         return Redirect::route('community.show', $forum->slug);
