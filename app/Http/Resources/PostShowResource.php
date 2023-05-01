@@ -22,6 +22,7 @@ class PostShowResource extends JsonResource
             'slug' => $this->slug,
             'url' => $this->url,
             'owner' => $this->user->id === auth()->id(),
+            'comments' => CommentResource::collection($this->whenLoaded('comments'))
         ];
     }
 }
