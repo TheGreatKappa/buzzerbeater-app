@@ -15,4 +15,14 @@ class PostCommentController extends Controller
 
         return back();
     }
+
+    public function reply($community_slug, Post $post, $comment_id){
+        $post->comments()->create([
+            'user_id' => auth()->id(),
+            'parent_id' => $comment_id,
+            'content' => Request::input('content'),
+        ]);
+
+        return back();
+    }
 }

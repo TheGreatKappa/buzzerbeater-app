@@ -42,7 +42,12 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Comment::class)->whereNotNull('parent_id');
     }
 
     public function forum()

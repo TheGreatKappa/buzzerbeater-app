@@ -1,16 +1,28 @@
 import { Head, usePage, Link, useForm } from '@inertiajs/react';
+import { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
 export default function Show(props){
     const { post, community } = usePage().props;
+    const [showReplyForm, setShowReplyForm] = useState(false);
+    const [showReplies, setShowReplies] = useState(false);
     const PostedByLoggedUser = Boolean(post.data.owner);
     console.log({post});
     console.log({community});
     console.log({PostedByLoggedUser});
 
+    console.log(post.data.comments);
+    console.log(post.data.replies);
+
     const form = useForm({
         'content': '',
+        'parent_id': null,
     });
+
+    const reply = useForm({
+        'content': '',
+        'parent_id': '',
+    })
 
     const submit = (e) => {
         e.preventDefault();
@@ -20,11 +32,23 @@ export default function Show(props){
         });
     };
 
+    const submitReply = (commentID) => (e) => {
+        e.preventDefault();
+
+        const comment = post.data.comments.find((c) => c.id === commentID);
+
+        reply.post(route('posts.comments.reply', [community.slug, post.data.slug, comment.id]), {
+            onSuccess: () => {
+                reply.reset('content'),
+                setShowReplyForm(false)
+            }
+        });
+    };
+
     return(
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{post.data.title}</h2>}
         >
             <Head title={post.data.title} />
 
@@ -56,22 +80,6 @@ export default function Show(props){
                         <p className="text-slate-600">{post.data.description}</p>
                         <a href={post.url} className="text-blue-500 font-semibold text-sm hover:text-blue-300">{post.data.url}</a>
                         <hr></hr>
-                        <div className="flex flex-col md:flex-row justify-between">
-                            <ul role="list" className="divide-y divide-gray-200 m-2 p-2">
-                                {post.data.comments.map((comment) => (
-                                    <li key={comment.id} className="py-4 flex">
-                                        <div className="ml-3">
-                                            Comment by
-                                            <span className="text-sm font-medium text-gray-900 ml-1">{comment.username}</span>
-                                            <div className="mt-2 text-sm text-gray-700">
-                                                <p className="m-2 p-2">{comment.comment}</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>        
-                        </div>
-                        <hr></hr>
                         <div>
                             <form className="m-2 p-2 max-w-md" onSubmit={submit}>
                                 <div>
@@ -90,6 +98,55 @@ export default function Show(props){
                                 </div>
                             </form>
                         </div>
+                        <hr></hr>
+                        <div>
+                            <ul role="list" className="divide-y divide-gray-200 m-2 p-2">
+                                {post.data.comments.map((comment) => (
+                                    <li key={comment.id} className="py-4 flex">
+                                        <div className="ml-3">
+                                            Comment by
+                                            <span className="text-sm font-medium text-gray-900 ml-1">{comment.username}</span>
+                                            <div className="mt-2 text-sm text-gray-700">
+                                                <p className="m-2 p-2">{comment.comment}</p>
+                                            </div>
+                                            <div>
+                                                <button onClick={() => setShowReplies(comment.id)}>Válaszok</button>
+                                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2" onClick={() => setShowReplyForm(comment.id)}>Válasz</button>
+                                            </div>
+                                            {showReplyForm && (
+                                                <form onSubmit={submitReply(comment.id)}>
+                                                    <div>
+                                                    <label
+                                                        htmlFor={`reply-${comment.id}`}
+                                                        className="block m-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                                                    >
+                                                        Válasz
+                                                    </label>
+                                                    <textarea
+                                                        name={`reply-${comment.id}`}
+                                                        id={`reply-${comment.id}`}
+                                                        rows="4"
+                                                        value={reply.data.content}
+                                                        onChange={e => reply.setData('content', e.target.value)}
+                                                        className="rounded-lg block w-full text-sm p-2 text-gray-900 bg-gray-100 border"
+                                                    ></textarea>
+                                                    </div>
+                                                    <div className="mt-4">
+                                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                                        Küldés
+                                                    </button>
+                                                    </div>
+                                                </form>
+                                            )}
+                                            {showReplies && (
+                                                <p>works.</p>
+                                            )}
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>        
+                        </div>
+                        <hr></hr>
                     </div>
                  </div>
                 <div className="w-full md:w-4/12">

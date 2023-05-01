@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignID('post_id')->constrained();
             $table->foreignID('user_id')->constrained();
+            $table->integer('parent_id')->unsigned()->nullable();
             $table->text('content');
             $table->timestamps();
         });

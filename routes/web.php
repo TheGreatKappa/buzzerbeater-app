@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
 
     Route::post('forum/{forum_slug}/posts/{post:slug}/comments', [PostCommentController::class, 'store'])->name('posts.comments');
 
+    Route::post('forum/{forum_slug}/posts/{post:slug}/comments/{comment_id}/reply', [PostCommentController::class, 'reply'])->name('posts.comments.reply');
+
     Route::get('details/{id}', [MatchController::class, 'show'])->name('details.show');
 
     Route::get('/results', function () {
