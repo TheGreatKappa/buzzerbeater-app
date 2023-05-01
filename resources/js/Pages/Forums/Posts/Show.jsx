@@ -1,4 +1,4 @@
-import { Head, usePage, Link } from '@inertiajs/react';
+import { Head, usePage, Link, useForm } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
 export default function Show(props){
@@ -7,6 +7,18 @@ export default function Show(props){
     console.log({post});
     console.log({community});
     console.log({PostedByLoggedUser});
+
+    const form = useForm({
+        'content': '',
+    });
+
+    const submit = (e) => {
+        e.preventDefault();
+
+        form.post(route('posts.comments', [community.slug, post.data.slug]), {
+            onSuccess: () => form.reset('content')
+        });
+    };
 
     return(
         <AuthenticatedLayout
@@ -43,6 +55,41 @@ export default function Show(props){
                         <h1 className="font-semibold text-2xl text-black">{post.data.title}</h1>
                         <p className="text-slate-600">{post.data.description}</p>
                         <a href={post.url} className="text-blue-500 font-semibold text-sm hover:text-blue-300">{post.data.url}</a>
+                        <hr></hr>
+                        <div className="flex flex-col md:flex-row justify-between">
+                            <ul role="list" className="divide-y divide-gray-200 m-2 p-2">
+                                {post.data.comments.map((comment) => (
+                                    <li key={comment.id} className="py-4 flex">
+                                        <div className="ml-3">
+                                            Comment by
+                                            <span className="text-sm font-medium text-gray-900 ml-1">{comment.username}</span>
+                                            <div className="mt-2 text-sm text-gray-700">
+                                                <p className="m-2 p-2">{comment.comment}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>        
+                        </div>
+                        <hr></hr>
+                        <div>
+                            <form className="m-2 p-2 max-w-md" onSubmit={submit}>
+                                <div>
+                                    <label htmlFor="comment" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Hozzászólás</label>
+                                    <textarea 
+                                        name="content" 
+                                        id="content" 
+                                        rows="4" 
+                                        value={form.data.content} 
+                                        onChange={e => form.setData('content', e.target.value)}
+                                        className="rounded-lg block w-full text-sm p-2 text-gray-900 bg-gray-100 border">
+                                    </textarea>
+                                </div>
+                                <div className="mt-4">
+                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Hozzászólás</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                  </div>
                 <div className="w-full md:w-4/12">

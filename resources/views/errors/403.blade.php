@@ -9,7 +9,7 @@
     <body class="bg-black">
         <div class="flex h-screen">
             <div class="m-auto text-center items-center bg-white rounded-lg p-6">
-                <div className="">
+                <div>
                     <img src="{{ url('storage/forbidden.gif')}}" class="rounded-lg mx-auto" />
                 </div>
                 <h1 class="mt-4 text-2xl">Az oldalhoz nincs hozzáférésed.</h1>

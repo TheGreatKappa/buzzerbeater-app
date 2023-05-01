@@ -6,6 +6,7 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\CommunityPostController;
 use App\Http\Controllers\FrontendPostController;
 use App\Http\Controllers\MatchController;
+use App\Http\Controllers\PostCommentController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,6 +38,8 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
     Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
 
     Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');
+
+    Route::post('forum/{forum_slug}/posts/{post:slug}/comments', [PostCommentController::class, 'store'])->name('posts.comments');
 
     Route::get('details/{id}', [MatchController::class, 'show'])->name('details.show');
 
