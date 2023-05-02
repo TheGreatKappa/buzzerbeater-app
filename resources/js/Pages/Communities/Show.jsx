@@ -47,7 +47,7 @@ export default function Show(props){
                 <div className='w-full md:w-8/12'>
                 {posts.data.map(({ id, title, description, username, slug }) => (
                     <div className="m-3 p-6 max-w-4xl bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <Voting />
+                        <Voting post={slug}/>
                         <div>
                             <div className="flex m-2 p-2">
                                 <div className="flex">Posted by

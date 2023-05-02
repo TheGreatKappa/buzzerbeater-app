@@ -7,6 +7,7 @@ use App\Http\Controllers\CommunityPostController;
 use App\Http\Controllers\FrontendPostController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\PostCommentController;
+use App\Http\Controllers\VotingController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
