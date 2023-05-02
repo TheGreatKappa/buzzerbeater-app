@@ -21,6 +21,7 @@ class CommunityPostResource extends JsonResource
             'username' => $this->user->username,
             'slug' => $this->slug,
             'url' => $this->url,
+            'upvotes' => $this->upvotes,
         ];
     }
 }

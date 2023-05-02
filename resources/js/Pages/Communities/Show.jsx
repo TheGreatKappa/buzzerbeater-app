@@ -45,13 +45,13 @@ export default function Show(props){
             </div>
             <section className='flex flex-col md:flex-row m-2 p-2'>
                 <div className='w-full md:w-8/12'>
-                {posts.data.map(({ id, title, description, username, slug }) => (
+                {posts.data.map(({ id, title, description, username, slug, upvotes }) => (
                     <div className="m-3 p-6 max-w-4xl bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <Voting post={slug}/>
+                        <Voting post={slug} upvotes={upvotes}/>
                         <div>
                             <div className="flex m-2 p-2">
                                 <div className="flex">Posted by
-                                <span className="ml-1">{ username }</span>
+                                <span className="ml-1 font-semibold">{ username }</span>
                                 </div>
                             </div>
                             <a className="text-2xl font-bold">{ title }</a>
