@@ -2,6 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage, Link } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import PrimaryButton from '@/Components/PrimaryButton';
+import Voting from '@/Components/Voting';
 
 export default function Show(props){
     const [sortedPosts, setSortedPosts] = useState([]);
@@ -46,7 +47,7 @@ export default function Show(props){
                 <div className='w-full md:w-8/12'>
                 {posts.data.map(({ id, title, description, username, slug }) => (
                     <div className="m-3 p-6 max-w-4xl bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="mr-4">Upvote</div>
+                        <Voting />
                         <div>
                             <div className="flex m-2 p-2">
                                 <div className="flex">Posted by

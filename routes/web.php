@@ -53,6 +53,9 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
         return Inertia::render('Live');
     })->name('live');
 
+    Route::post('/posts/{post:slug}/upvote', [VotingController::class, 'upvote'])->name('posts.upvote');
+    Route::post('/posts/{post:slug}/downvote', [VotingController::class, 'downvote'])->name('posts.downvote');
+
     Route::resource('/forums', ForumController::class);
     Route::resource('/forums.posts', CommunityPostController::class);
 });

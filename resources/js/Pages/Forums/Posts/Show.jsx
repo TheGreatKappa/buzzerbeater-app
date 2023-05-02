@@ -5,7 +5,6 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 export default function Show(props){
     const { post, community } = usePage().props;
     const [showReplyForm, setShowReplyForm] = useState(false);
-    const [showReplies, setShowReplies] = useState(false);
     const PostedByLoggedUser = Boolean(post.data.owner);
     console.log({post});
     console.log({community});
@@ -22,7 +21,7 @@ export default function Show(props){
     const reply = useForm({
         'content': '',
         'parent_id': '',
-    })
+    });
 
     const submit = (e) => {
         e.preventDefault();
@@ -68,8 +67,8 @@ export default function Show(props){
                             <div>
                                 {PostedByLoggedUser ? (
                                     <>
-                                    <Link href={route('forums.posts.edit', [community.slug, post.data.slug])}>Edit</Link>
-                                    <Link className="ml-2" href={route('forums.posts.destroy', [community.slug, post.data.slug])} method="delete">Delete</Link>
+                                    <Link className="hover:text-blue-500" href={route('forums.posts.edit', [community.slug, post.data.slug])}>Edit</Link>
+                                    <Link className="ml-2 hover:text-red-500" href={route('forums.posts.destroy', [community.slug, post.data.slug])} method="delete">Delete</Link>
                                     </>
                                 ) : (
                                     <></>
@@ -110,7 +109,6 @@ export default function Show(props){
                                                 <p className="m-2 p-2">{comment.comment}</p>
                                             </div>
                                             <div>
-                                                <button onClick={() => setShowReplies(comment.id)}>Válaszok</button>
                                                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2" onClick={() => setShowReplyForm(comment.id)}>Válasz</button>
                                             </div>
                                             {showReplyForm && (
@@ -137,9 +135,6 @@ export default function Show(props){
                                                     </button>
                                                     </div>
                                                 </form>
-                                            )}
-                                            {showReplies && (
-                                                <p>works.</p>
                                             )}
                                         </div>
                                     </li>
