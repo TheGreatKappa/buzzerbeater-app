@@ -1,6 +1,7 @@
 import { Head, usePage, Link, useForm } from '@inertiajs/react';
 import { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Voting from '@/Components/Voting';
 
 export default function Show(props){
     const { post, community } = usePage().props;
@@ -75,6 +76,7 @@ export default function Show(props){
                                 )}
                             </div>
                         </div>
+                        <Voting post={post.data.slug} upvotes={post.data.upvotes} votes={post.data.votes[0].vote}/>
                         <h1 className="font-semibold text-2xl text-black">{post.data.title}</h1>
                         <p className="text-slate-600">{post.data.description}</p>
                         <a href={post.url} className="text-blue-500 font-semibold text-sm hover:text-blue-300">{post.data.url}</a>

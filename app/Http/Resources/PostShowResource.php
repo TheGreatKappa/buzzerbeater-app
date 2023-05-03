@@ -23,7 +23,9 @@ class PostShowResource extends JsonResource
             'url' => $this->url,
             'owner' => $this->user->id === auth()->id(),
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
-            'replies' => ReplyResource::collection($this->whenLoaded('replies'))
+            'replies' => ReplyResource::collection($this->whenLoaded('replies')),
+            'upvotes' => $this->upvotes,
+            'votes' => $this->whenLoaded('votes')
         ];
     }
 }
