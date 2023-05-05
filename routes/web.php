@@ -8,6 +8,7 @@ use App\Http\Controllers\FrontendPostController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\VotingController;
+use App\Http\Controllers\HomepageController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,14 +24,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [HomepageController::class, 'show'])->name('welcome');
 
 //Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
 //Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');

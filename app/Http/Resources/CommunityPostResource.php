@@ -23,6 +23,8 @@ class CommunityPostResource extends JsonResource
             'url' => $this->url,
             'upvotes' => $this->upvotes,
             'votes' => $this->whenLoaded('votes'),
+            'forum_slug' => $this->forum->slug,
+            'comments' => CommentResource::collection($this->whenLoaded('comments'))->count(),
         ];
     }
 }

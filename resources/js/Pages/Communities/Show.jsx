@@ -5,24 +5,11 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import Voting from '@/Components/Voting';
 
 export default function Show(props){
-    const [sortedPosts, setSortedPosts] = useState([]);
     const { community, posts } = usePage().props;
     const isLoggedIn = Boolean(props.auth.user == null);
 
     console.log(typeof {posts});
      
-    useEffect(() => {
-        const sortNew = document.querySelector('.timeSorted');
-
-        sortNew.addEventListener('click', () => {
-            console.log('working');
-            const sorted = Object.values(posts).sort((a, b) => {
-                return new Date(b.created_at) - new Date(a.created_at);
-            });
-            setSortedPosts(sorted);
-        });
-    }, [posts]);
-
     console.log({posts});
     console.log({community});
     console.log(isLoggedIn);
@@ -40,12 +27,9 @@ export default function Show(props){
             </div>
             </>}
             >
-            <div>
-                <PrimaryButton className='timeSorted'>Sort by new</PrimaryButton>
-            </div>
             <section className='flex flex-col md:flex-row m-2 p-2'>
                 <div className='w-full md:w-8/12'>
-                {posts.data.map(({ id, title, description, username, slug, upvotes, votes }) => (
+                {posts.data.map(({ id, title, description, username, slug, upvotes, votes, comments }) => (
                     <div className="m-3 p-6 max-w-4xl bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <Voting post={slug} upvotes={upvotes} votes={votes[0].vote}/>
                         <div>
@@ -57,7 +41,7 @@ export default function Show(props){
                             <a className="text-2xl font-bold">{ title }</a>
                             <p>{ description }</p>
                             <div className="flex m-2 p-2">
-                            <p className="mr-4 p-2">Comments</p>
+                            <p className="mr-4 p-2">Comments({ comments })</p>
                                 <Link href={route('posts.show', [community.slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3">Read More</Link>
                             </div>
                         </div>
