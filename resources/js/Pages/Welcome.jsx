@@ -11,7 +11,7 @@ export default function Welcome(props) {
     console.log(posts);
     return (
         <>
-        <Head title="Welcome" />
+        <Head title="Főoldal" />
         {isLoggedIn ? (
                 <GuestLayout>
                     <div>

@@ -13,7 +13,7 @@ export default function Dashboard(props) {
             errors={props.errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Fórumok</h2>}
         >
-            <Head title="Forums" />
+            <Head title="Fórumok" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">

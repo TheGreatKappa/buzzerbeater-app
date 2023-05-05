@@ -21,14 +21,14 @@ export default function Authenticated({ auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('forums.index')} active={route().current('forums.index')}>
-                                    Fórumok
-                                </NavLink>
                                 <NavLink href={route('results')} active={route().current('results')}>
                                     Eredmények
                                 </NavLink>
                                 <NavLink href={route('live')} active={route().current('live')}>
                                     ÉLŐ
+                                </NavLink>
+                                <NavLink href={route('feedback')} active={route().current('feedback')}>
+                                    Visszajelzés
                                 </NavLink>
                             </div>
                         </div>
@@ -61,6 +61,7 @@ export default function Authenticated({ auth, header, children }) {
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
+                                        <Dropdown.Link href={route('forums.index')}>Fórumjaid</Dropdown.Link>
                                         <Dropdown.Link href={route('profile.edit')}>Profilod</Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
                                             Kijelentkezés
@@ -98,14 +99,14 @@ export default function Authenticated({ auth, header, children }) {
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('forums.index')} active={route().current('forums.index')}>
-                            Fórumok
-                        </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('results')} active={route().current('results')}>
                             Eredmények
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('live')} active={route().current('live')}>
                             Élő
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('feedback')} active={route().current('feedback')}>
+                            Visszajelzés
                         </ResponsiveNavLink>
                     </div>
 
@@ -119,6 +120,7 @@ export default function Authenticated({ auth, header, children }) {
 
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route('profile.edit')}>Profilod</ResponsiveNavLink>
+                            <ResponsiveNavLink href={route('forums.index')}>Fórumjaid</ResponsiveNavLink>
                             <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                 Kijelentkezés
                             </ResponsiveNavLink>

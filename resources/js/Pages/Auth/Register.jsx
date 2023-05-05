@@ -71,7 +71,7 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel forInput="email" value="Email" />
+                    <InputLabel forInput="email" value="E-mail" />
 
                     <TextInput
                         id="email"

@@ -48,6 +48,10 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
         return Inertia::render('Live');
     })->name('live');
 
+    Route::get('/feedback', function () {
+        return Inertia::render('Feedback');
+    })->name('feedback');
+
     Route::post('/posts/{post:slug}/upvote', [VotingController::class, 'upvote'])->name('posts.upvote');
     Route::post('/posts/{post:slug}/downvote', [VotingController::class, 'downvote'])->name('posts.downvote');
 

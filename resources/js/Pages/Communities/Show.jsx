@@ -3,6 +3,7 @@ import { Head, usePage, Link } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import PrimaryButton from '@/Components/PrimaryButton';
 import Voting from '@/Components/Voting';
+import Sidebar from '@/Components/Sidebar';
 
 export default function Show(props){
     const { community, posts } = usePage().props;

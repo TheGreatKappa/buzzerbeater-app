@@ -13,7 +13,7 @@ export default function VerifyEmail({ status }) {
 
     return (
         <GuestLayout>
-            <Head title="Email Verification" />
+            <Head title="E-mail megerősítés" />
 
             <div className="mb-4 text-sm text-gray-600">
                 Köszönjük regisztrációdat! Mielőtt belekezdenél az oldalon való böngészésbe, kérjük erősítsd meg az e-mail címed az általunk
