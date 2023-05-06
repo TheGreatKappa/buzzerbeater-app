@@ -61,10 +61,7 @@ export default function Show(props){
                     </div>
                     <div className="m-2 p-2 bg-white rounded text-sm text-slate-400">
                         <div className="flex flex-col md:flex-row justify-between">
-                            <div>
-                                Posted by
-                                <span className=" text-slate-500 ml-1">{post.data.username}</span>
-                            </div>
+                        <Voting post={post.data.slug} upvotes={post.data.upvotes} votes={post.data.votes.length > 0 ? post.data.votes[0].vote : 0}/>
                             <div>
                                 {PostedByLoggedUser ? (
                                     <>
@@ -76,7 +73,10 @@ export default function Show(props){
                                 )}
                             </div>
                         </div>
-                        <Voting post={post.data.slug} upvotes={post.data.upvotes} votes={post.data.votes[0].vote}/>
+                        <div>
+                            <span className="font-semibold text-black">{post.data.username}</span>
+                            <span className="ml-1 text-slate-500">posztja</span>
+                        </div>
                         <h1 className="font-semibold text-2xl text-black">{post.data.title}</h1>
                         <p className="text-slate-600">{post.data.description}</p>
                         <a href={post.url} className="text-blue-500 font-semibold text-sm hover:text-blue-300">{post.data.url}</a>
@@ -105,8 +105,7 @@ export default function Show(props){
                                 {post.data.comments.map((comment) => (
                                     <li key={comment.id} className="py-4 flex">
                                         <div className="ml-3">
-                                            Comment by
-                                            <span className="text-sm font-medium text-gray-900 ml-1">{comment.username}</span>
+                                            <span className="text-sm font-semibold text-gray-900 ml-1">{comment.username}</span>
                                             <div className="mt-2 text-sm text-gray-700">
                                                 <p className="m-2 p-2">{comment.comment}</p>
                                             </div>
@@ -148,7 +147,7 @@ export default function Show(props){
                  </div>
                 <div className="w-full md:w-4/12">
                     <div className="m-2 p-2 bg-white rounded">
-                        <h2 className="font-semibold text-2xl text-black">About Community</h2>
+                        <h2 className="font-semibold text-2xl text-black">A fórumról röviden</h2>
                         <p className="text-slate-600">{community.description}</p>
                     </div>
                 </div>

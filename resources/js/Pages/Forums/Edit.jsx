@@ -29,7 +29,7 @@ export default function Create(props){
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Edit Forum</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Fórum szerkesztése</h2>}
         >
             <Head title="Fórum szerkesztése" />
 

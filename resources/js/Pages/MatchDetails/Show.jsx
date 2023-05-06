@@ -79,7 +79,9 @@ export default function Show(props) {
             errors={props.errors}
             header={
             <div className="justify-center items-center flex">
-
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight">Mérkőzés részletei</h2>
+                <div className="ml-4 text-gray-500">{matchDate}</div>
+                <div className="ml-4 text-gray-500">{homeTeamName} {homeTeamScore} - {awayTeamScore} {awayTeamName}</div>
             </div>
             }
         >

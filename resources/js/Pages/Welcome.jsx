@@ -3,12 +3,14 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import GuestLayout from '@/Layouts/GuestLayout';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import Voting from '@/Components/Voting';
+import Sidebar from '@/Components/Sidebar';
 
 export default function Welcome(props) {
-    const { posts } = usePage().props;
+    const { posts, forums } = usePage().props;
     const isLoggedIn = Boolean(props.auth.user == null);
 
     console.log(posts);
+    console.log(forums);
     return (
         <>
         <Head title="Főoldal" />
@@ -29,10 +31,10 @@ export default function Welcome(props) {
             >
             <section className='flex flex-col md:flex-row m-2 p-2'>
                 <div className='w-full md:w-8/12'>
-                {posts.data.map(({ id, title, description, username, slug, upvotes, votes, forum_slug, comments }) => (
+                {posts.data.map(({ id, title, description, username, slug, upvotes, votes, forum_slug, comments, created_at }) => (
                     <div className="m-3 p-6 max-w-4xl bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="w-auto">
-                            <Voting post={slug} upvotes={upvotes} votes={votes[0].vote}/>
+                            <Voting post={slug} upvotes={upvotes} votes={votes.length > 0 ? votes[0].vote : 0}/>
                         </div>
                         <div className="grow">
                             <div className="flex m-2 p-2">
@@ -40,7 +42,8 @@ export default function Welcome(props) {
                                 <span className="ml-1">posztja</span>
                                 <span className="ml-1">a</span>
                                 <Link href={route('community.show', forum_slug)}><span className="ml-1 font-semibold">{ forum_slug }</span></Link>
-                                <span className="ml-1">fórumon:</span>
+                                <span className="ml-1">fórumon</span>
+                                <span className="ml-1">{ created_at }:</span>
                                 </div>
                             </div>
                             <a className="text-2xl font-bold ml-4">{ title }</a>
@@ -53,9 +56,10 @@ export default function Welcome(props) {
                 ))}
                 </div>
                 <div className='w-full md:w-4/12 p-4'>
-                    <div className="m-2 p-2 bg-slate-500 text-white">
-                        <h2>Other communities</h2>
+                    <div className=" p-2 bg-slate-500 text-white shadow-sm rounded-t-md">
+                        <h2>Legnépszerűbb fórumok</h2>
                     </div>
+                    <Sidebar forums={forums}/>
                 </div>
             </section>
             </AuthenticatedLayout>
