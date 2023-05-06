@@ -31,21 +31,22 @@ export default function Welcome(props) {
                 <div className='w-full md:w-8/12'>
                 {posts.data.map(({ id, title, description, username, slug, upvotes, votes, forum_slug, comments }) => (
                     <div className="m-3 p-6 max-w-4xl bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <Voting post={slug} upvotes={upvotes} votes={votes[0].vote}/>
-                        <div>
+                        <div className="w-auto">
+                            <Voting post={slug} upvotes={upvotes} votes={votes[0].vote}/>
+                        </div>
+                        <div className="grow">
                             <div className="flex m-2 p-2">
-                                <div className="flex">Posted by 
-                                <span className="ml-1 font-semibold">{ username }</span>
-                                <span className="ml-1">at</span>
+                                <div className="flex">{ username }
+                                <span className="ml-1">posztja</span>
+                                <span className="ml-1">a</span>
                                 <Link href={route('community.show', forum_slug)}><span className="ml-1 font-semibold">{ forum_slug }</span></Link>
-                                <span className="ml-1">forum</span>
+                                <span className="ml-1">fórumon:</span>
                                 </div>
                             </div>
-                            <a className="text-2xl font-bold">{ title }</a>
-                            <p>{ description }</p>
+                            <a className="text-2xl font-bold ml-4">{ title }</a>
+                            <p className="ml-4">{ description }</p>
                             <div className="flex m-2 p-2">
-                            <p className="mr-4 p-2">Comments({ comments })</p>
-                                <Link href={route('posts.show', [forum_slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3">Read More</Link>
+                            <Link href={route('posts.show', [forum_slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3">Hozzászólások({ comments })</Link>
                             </div>
                         </div>
                     </div>

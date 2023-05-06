@@ -1,4 +1,4 @@
-import Link from '@inertiajs/react';
+/*import Link from '@inertiajs/react';
 
 export default function Sidebar() {
     return(
@@ -17,4 +17,4 @@ export default function Sidebar() {
             </ul>
         </div>
     )
-}
+}*/

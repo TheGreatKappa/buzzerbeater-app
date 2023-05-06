@@ -3,7 +3,7 @@ import { Head, usePage, Link } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import PrimaryButton from '@/Components/PrimaryButton';
 import Voting from '@/Components/Voting';
-import Sidebar from '@/Components/Sidebar';
+//import Sidebar from '@/Components/Sidebar';
 
 export default function Show(props){
     const { community, posts } = usePage().props;
@@ -42,8 +42,7 @@ export default function Show(props){
                             <a className="text-2xl font-bold">{ title }</a>
                             <p>{ description }</p>
                             <div className="flex m-2 p-2">
-                            <p className="mr-4 p-2">Comments({ comments })</p>
-                                <Link href={route('posts.show', [community.slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3">Read More</Link>
+                            <Link href={route('posts.show', [community.slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3">Hozzászólások({ comments })</Link>
                             </div>
                         </div>
                     </div>
