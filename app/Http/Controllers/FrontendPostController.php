@@ -18,7 +18,7 @@ class FrontendPostController extends Controller
             $query->where('user_id', auth()->id());
         }])->where('slug', $slug)->first());
 
-        $latest = PostResource::collection(Post::with(['user', 'forum'])->orderBy('created_at', 'desc')->take(5)->get());
+        $latest = PostResource::collection(Post::with(['user', 'forum'])->orderBy('upvotes', 'desc')->take(5)->get());
 
         return Inertia::render('Forums/Posts/Show', compact('community', 'post', 'latest'));
     }
