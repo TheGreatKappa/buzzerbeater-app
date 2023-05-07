@@ -7,6 +7,7 @@ use App\Models\Forum;
 use App\Models\Post;
 use Inertia\Inertia;
 use App\Http\Resources\PostShowResource;
+use App\Http\Resources\PostResource;
 
 class FrontendPostController extends Controller
 {
@@ -17,6 +18,8 @@ class FrontendPostController extends Controller
             $query->where('user_id', auth()->id());
         }])->where('slug', $slug)->first());
 
-        return Inertia::render('Forums/Posts/Show', compact('community', 'post'));
+        $latest = PostResource::collection(Post::with(['user', 'forum'])->orderBy('created_at', 'desc')->take(5)->get());
+
+        return Inertia::render('Forums/Posts/Show', compact('community', 'post', 'latest'));
     }
 }

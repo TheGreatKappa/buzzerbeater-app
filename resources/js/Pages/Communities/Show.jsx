@@ -6,10 +6,11 @@ import Voting from '@/Components/Voting';
 import Sidebar from '@/Components/Sidebar';
 
 export default function Show(props){
-    const { community, posts } = usePage().props;
+    const { community, posts, latest } = usePage().props;
     
     console.log({posts});
     console.log({community});
+    console.log({latest});
 
     return (
         <> 
@@ -34,7 +35,7 @@ export default function Show(props){
                                 <span className="font-semibold">{ username }</span>
                                 <span className="ml-1">posztja</span>
                             </div>
-                            <a className="text-2xl font-bold ml-4">{ title }</a>
+                            <Link href={route('posts.show', [community.slug, slug])} className="text-2xl font-bold ml-4 hover:text-blue-700">{ title }</Link>
                             <p className="ml-4">{ description }</p>
                             <div className="flex m-2 p-2">
                             <Link href={route('posts.show', [community.slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3">Hozzászólások({ comments })</Link>
@@ -44,9 +45,16 @@ export default function Show(props){
                 ))}
                 </div>
                 <div className='w-full md:w-4/12 p-4'>
-                    <div className="m-2 p-2 bg-slate-500 text-white rounded-sm">
-                        <h2>Fórumok, amik érdekelhetnek</h2>
+                    <div className="p-2 bg-slate-500 text-white rounded-t-sm">
+                        <h2>A fórumról</h2>
                     </div>
+                    <div className="rounded-b-sm">
+                        <p className="bg-white font-semibold p-2 mb-4">{ community.description }</p>
+                    </div>
+                    <div className="p-2 bg-slate-500 text-white rounded-t-sm">
+                        <h2>További fórumok</h2>
+                    </div>
+                    <Sidebar forums={latest} />
                 </div>
             </section>
             </AuthenticatedLayout>

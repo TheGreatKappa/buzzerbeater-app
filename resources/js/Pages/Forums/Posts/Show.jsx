@@ -2,14 +2,16 @@ import { Head, usePage, Link, useForm } from '@inertiajs/react';
 import { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import Voting from '@/Components/Voting';
+import PostSidebar from '@/Components/PostSidebar';
 
 export default function Show(props){
-    const { post, community } = usePage().props;
+    const { post, community, latest } = usePage().props;
     const [showReplyForm, setShowReplyForm] = useState(false);
     const PostedByLoggedUser = Boolean(post.data.owner);
     console.log({post});
     console.log({community});
     console.log({PostedByLoggedUser});
+    console.log({latest});
 
     console.log(post.data.comments);
     console.log(post.data.replies);
@@ -145,11 +147,17 @@ export default function Show(props){
                         <hr></hr>
                     </div>
                  </div>
-                <div className="w-full md:w-4/12">
-                    <div className="m-2 p-2 bg-white rounded">
-                        <h2 className="font-semibold text-2xl text-black">A fórumról röviden</h2>
-                        <p className="text-slate-600">{community.description}</p>
+                 <div className='w-full md:w-4/12 p-4'>
+                    <div className="p-2 bg-slate-500 text-white rounded-t-sm">
+                        <h2>A fórumról</h2>
                     </div>
+                    <div className="rounded-b-sm">
+                        <p className="bg-white font-semibold p-2 mb-4">{ community.description }</p>
+                    </div>
+                    <div className="p-2 bg-slate-500 text-white rounded-t-sm">
+                        <h2>További posztok a {community.name} fórumról</h2>
+                    </div>
+                    <PostSidebar posts={latest} community_slug={community.slug} />
                 </div>
             </section>
         </AuthenticatedLayout>
