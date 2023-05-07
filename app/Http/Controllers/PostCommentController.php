@@ -25,4 +25,14 @@ class PostCommentController extends Controller
 
         return back();
     }
+
+    public function destroy($community_slug, Post $post, $comment_id){
+        $comment = $post->comments()->findOrFail($comment_id);
+
+        $this->authorize('delete', $comment);
+
+        $comment->delete();
+
+        return back();
+    }
 }

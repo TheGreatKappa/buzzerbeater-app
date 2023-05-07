@@ -18,6 +18,7 @@ class CommentResource extends JsonResource
             'username' => $this->user->username,
             'comment' => $this->content,
             'id' => $this->id,
+            'owner' => $this->user->id === auth()->id(),
         ];
     }
 }

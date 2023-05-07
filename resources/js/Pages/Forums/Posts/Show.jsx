@@ -7,10 +7,9 @@ import PostSidebar from '@/Components/PostSidebar';
 export default function Show(props){
     const { post, community, latest } = usePage().props;
     const [showReplyForm, setShowReplyForm] = useState(false);
-    const PostedByLoggedUser = Boolean(post.data.owner);
+
     console.log({post});
     console.log({community});
-    console.log({PostedByLoggedUser});
     console.log({latest});
 
     console.log(post.data.comments);
@@ -65,10 +64,10 @@ export default function Show(props){
                         <div className="flex flex-col md:flex-row justify-between">
                         <Voting post={post.data.slug} upvotes={post.data.upvotes} votes={post.data.votes.length > 0 ? post.data.votes[0].vote : 0}/>
                             <div>
-                                {PostedByLoggedUser ? (
+                                {post.data.owner ? (
                                     <>
-                                    <Link className="hover:text-blue-500" href={route('forums.posts.edit', [community.slug, post.data.slug])}>Edit</Link>
-                                    <Link className="ml-2 hover:text-red-500" href={route('forums.posts.destroy', [community.slug, post.data.slug])} method="delete">Delete</Link>
+                                    <Link className="hover:text-blue-500" href={route('forums.posts.edit', [community.slug, post.data.slug])}>Szerkesztés</Link>
+                                    <Link className="ml-2 hover:text-red-500" href={route('forums.posts.destroy', [community.slug, post.data.slug])} method="delete">Törlés</Link>
                                     </>
                                 ) : (
                                     <></>
@@ -108,6 +107,13 @@ export default function Show(props){
                                     <li key={comment.id} className="py-4 flex">
                                         <div className="ml-3">
                                             <span className="text-sm font-semibold text-gray-900 ml-1">{comment.username}</span>
+                                            { comment.owner ? (
+                                                <>
+                                                <Link className="ml-2 hover:text-red-500" href={route('posts.comments.destroy', [community.slug, post.data.slug, comment.id])} method="delete">Törlés</Link>
+                                                </>
+                                            ) : (
+                                                <></>
+                                            )}
                                             <div className="mt-2 text-sm text-gray-700">
                                                 <p className="m-2 p-2">{comment.comment}</p>
                                             </div>

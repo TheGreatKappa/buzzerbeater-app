@@ -57,6 +57,8 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
 
     Route::resource('/forums', ForumController::class);
     Route::resource('/forums.posts', CommunityPostController::class);
+
+    Route::delete('forum/{forum_slug}/posts/{post:slug}/comments/{comment_id}', [PostCommentController::class, 'destroy'])->name('posts.comments.destroy');
 });
 
 Route::middleware('auth')->group(function () {

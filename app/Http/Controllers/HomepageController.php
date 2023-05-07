@@ -13,11 +13,11 @@ class HomepageController extends Controller
 {
     public function show(){
 
-        $posts = CommunityPostResource::collection(Post::with(['user', 'forum', 'votes', 'comments' => function ($query){
+        $posts = CommunityPostResource::collection(Post::with(['user', 'forum', 'votes' => function ($query){
             $query->where('user_id', auth()->id());
-        }])->orderBy('upvotes', 'desc')->take(10)->get());
+        }, 'comments'])->orderBy('upvotes', 'desc')->take(10)->get());
 
-        $forums = ForumResource::collection(Forum::withCount('posts')->orderBy('posts_count', 'desc')->take(5)->get());
+        $forums = ForumResource::collection(Forum::withCount('posts')->orderBy('posts_count', 'desc')->take(10)->get());
 
         return Inertia::render('Welcome', compact('posts', 'forums'));
     }
