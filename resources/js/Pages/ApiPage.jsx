@@ -2,8 +2,6 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 import Pagination from '@/Components/Pagination';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function API(props) {
     const [games, setGames] = useState([]);
@@ -48,7 +46,6 @@ export default function API(props) {
                         </div>
                         <div className="flex justify-center items-center">
                             <button className="SearchButton font-medium bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Keresés</button>
-                            <ToastContainer/>
                         </div>
                     </div>
                 </div>

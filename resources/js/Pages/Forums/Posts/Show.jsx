@@ -60,14 +60,19 @@ export default function Show(props){
                             <Link href={route('community.show', community.slug)}>{community.name}</Link>
                         </h2>
                     </div>
-                    <div className="m-2 p-2 bg-white rounded text-sm text-slate-400">
+                    <div className="m-2 p-2 bg-white rounded text-sm">
                         <div className="flex flex-col md:flex-row justify-between">
-                        <Voting post={post.data.slug} upvotes={post.data.upvotes} votes={post.data.votes.length > 0 ? post.data.votes[0].vote : 0}/>
+                            <div className="flex">
+                                <Voting post={post.data.slug} upvotes={post.data.upvotes} votes={post.data.votes.length > 0 ? post.data.votes[0].vote : 0}/>
+                                <div className="flex items-center justify-center">
+                                    <span className="text-black">{post.data.username} posztja {post.data.created_at}</span>
+                                </div>
+                            </div>
                             <div>
                                 {post.data.owner ? (
                                     <>
-                                    <Link className="hover:text-blue-500" href={route('forums.posts.edit', [community.slug, post.data.slug])}>Szerkesztés</Link>
-                                    <Link className="ml-2 hover:text-red-500" href={route('forums.posts.destroy', [community.slug, post.data.slug])} method="delete">Törlés</Link>
+                                    <Link className="hover:text-blue-500 text-slate-500" href={route('forums.posts.edit', [community.slug, post.data.slug])}>Szerkesztés</Link>
+                                    <Link className="ml-2 hover:text-red-500 text-slate-500" href={route('forums.posts.destroy', [community.slug, post.data.slug])} method="delete">Törlés</Link>
                                     </>
                                 ) : (
                                     <></>
@@ -75,12 +80,11 @@ export default function Show(props){
                             </div>
                         </div>
                         <div>
-                            <span className="font-semibold text-black">{post.data.username}</span>
-                            <span className="ml-1 text-slate-500">posztja</span>
+
                         </div>
-                        <h1 className="font-semibold text-2xl text-black">{post.data.title}</h1>
-                        <p className="text-slate-600">{post.data.description}</p>
-                        <a href={post.url} className="text-blue-500 font-semibold text-sm hover:text-blue-300">{post.data.url}</a>
+                        <h1 className="font-semibold text-2xl text-black ml-4">{post.data.title}</h1>
+                        <p className="text-slate-600 ml-4 mb-2 mt-1">{post.data.description}</p>
+                        <a onclick="javascript;" href={post.data.url} className="text-blue-500 font-semibold text-sm hover:text-blue-300 ml-4 mb-2 mt-1">{post.data.url}</a>
                         <hr></hr>
                         <div>
                             <form className="m-2 p-2 max-w-md" onSubmit={submit}>
@@ -109,7 +113,7 @@ export default function Show(props){
                                             <span className="text-sm font-semibold text-gray-900 ml-1">{comment.username}</span>
                                             { comment.owner ? (
                                                 <>
-                                                <Link className="ml-2 hover:text-red-500" href={route('posts.comments.destroy', [community.slug, post.data.slug, comment.id])} method="delete">Törlés</Link>
+                                                <Link className="ml-2 hover:text-red-500 text-slate-500" href={route('posts.comments.destroy', [community.slug, post.data.slug, comment.id])} method="delete">Törlés</Link>
                                                 </>
                                             ) : (
                                                 <></>

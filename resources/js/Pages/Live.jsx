@@ -35,9 +35,6 @@ export default function Live(props){
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" className="px-6 py-3">
-                                            Date
-                                        </th>
-                                        <th scope="col" className="px-6 py-3">
                                             Home Team
                                         </th>
                                         <th scope="col" className="px-6 py-3">
@@ -53,7 +50,6 @@ export default function Live(props){
                                 <tbody>
                                     {games.map(({ id, date, home_team, visitor_team, home_team_score, visitor_team_score }) => (
                                             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={id}>
-                                                <th scope="row" className="px-6 py-4">{ new Date(date).toLocaleDateString() }</th>
                                                 <td className="px-6 py-4">{ home_team.full_name }</td>
                                                 <td className="px-6 py-4">{ home_team_score } - { visitor_team_score }</td>
                                                 <td className="px-6 py-4">{ visitor_team.full_name }</td>

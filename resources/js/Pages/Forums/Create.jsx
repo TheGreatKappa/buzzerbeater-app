@@ -4,9 +4,6 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, useForm } from '@inertiajs/react';
-import { ToastContainer, toast } from 'react-toastify';
-
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Create(props){
     const {data, processing, errors, setData, post} = useForm({
@@ -22,11 +19,7 @@ export default function Create(props){
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('forums.index'), {
-            onSuccess: () => {
-                toast.success('XD!');
-            }
-        });
+        post(route('forums.index'))
     };
 
     return(
@@ -39,7 +32,6 @@ export default function Create(props){
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <ToastContainer />
                     <div className="max-w-md mx-auto bg-white m-2 p-6">
                         <form onSubmit={submit}>
                             <div>

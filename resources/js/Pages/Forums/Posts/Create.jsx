@@ -4,9 +4,6 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, useForm, usePage } from '@inertiajs/react';
-import { ToastContainer } from 'react-toastify';
-
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Create(props){
     const {forum} = usePage().props;
@@ -29,8 +26,6 @@ export default function Create(props){
 
     return(
         <>
-            <ToastContainer />
-
             <AuthenticatedLayout
                 auth={props.auth}
                 errors={props.errors}

@@ -34,22 +34,18 @@ export default function Welcome(props) {
                 {posts.data.map(({ id, title, description, username, slug, upvotes, votes, forum_slug, comments, created_at }) => (
                     <div className="m-3 p-6 max-w-4xl bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="w-auto">
-                            <Voting post={slug} upvotes={upvotes} votes={votes.length > 0 ? votes[0].vote : 0}/>
+                            <div className="flex m-2 p-2">
+                                <Voting post={slug} upvotes={upvotes} votes={votes.length > 0 ? votes[0].vote : 0}/>
+                                    <div className="flex items-center justify-center">
+                                        <span className="ml-1">{ username } posztja a <Link href={route('community.show', forum_slug)} className="hover:text-blue-700">{ forum_slug }</Link> fórumon { created_at }</span>
+                                    </div>
+                            </div>
                         </div>
                         <div className="grow">
+                            <Link href={route('posts.show', [forum_slug, slug])} className="text-2xl font-bold ml-8 hover:text-blue-700">{ title }</Link>
+                            <p className="ml-8">{ description }</p>
                             <div className="flex m-2 p-2">
-                                <div className="flex">{ username }
-                                <span className="ml-1">posztja</span>
-                                <span className="ml-1">a</span>
-                                <Link href={route('community.show', forum_slug)}><span className="ml-1 font-semibold">{ forum_slug }</span></Link>
-                                <span className="ml-1">fórumon</span>
-                                <span className="ml-1">{ created_at }:</span>
-                                </div>
-                            </div>
-                            <a className="text-2xl font-bold ml-4">{ title }</a>
-                            <p className="ml-4">{ description }</p>
-                            <div className="flex m-2 p-2">
-                            <Link href={route('posts.show', [forum_slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3">Hozzászólások({ comments })</Link>
+                            <Link href={route('posts.show', [forum_slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3 ml-8 hover:text-blue-700">Hozzászólások({ comments })</Link>
                             </div>
                         </div>
                     </div>

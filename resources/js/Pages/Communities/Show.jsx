@@ -27,18 +27,19 @@ export default function Show(props){
             >
             <section className='flex flex-col md:flex-row m-2 p-2'>
                 <div className='w-full md:w-8/12'>
-                {posts.data.map(({ id, title, description, username, slug, upvotes, votes, comments }) => (
+                {posts.data.map(({ id, title, description, username, slug, upvotes, votes, comments, created_at }) => (
                     <div className="m-2 p-2 bg-white">
-                        <Voting post={slug} upvotes={upvotes} votes={votes.length > 0 ? votes[0].vote : 0}/>
-                        <div>
-                            <div className="flex m-2 p-2">
-                                <span className="font-semibold">{ username }</span>
-                                <span className="ml-1">posztja</span>
+                        <div className="flex m-2 p-2">
+                            <Voting post={slug} upvotes={upvotes} votes={votes.length > 0 ? votes[0].vote : 0}/>
+                             <div className="flex items-center justify-center">
+                                <span>{ username } posztja { created_at }</span>
                             </div>
-                            <Link href={route('posts.show', [community.slug, slug])} className="text-2xl font-bold ml-4 hover:text-blue-700">{ title }</Link>
-                            <p className="ml-4">{ description }</p>
+                        </div>
+                        <div>
+                            <Link href={route('posts.show', [community.slug, slug])} className="text-2xl font-bold ml-8 hover:text-blue-700">{ title }</Link>
+                            <p className="ml-8">{ description }</p>
                             <div className="flex m-2 p-2">
-                            <Link href={route('posts.show', [community.slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3">Hozzászólások({ comments })</Link>
+                            <Link href={route('posts.show', [community.slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3 ml-8">Hozzászólások({ comments })</Link>
                             </div>
                         </div>
                     </div>

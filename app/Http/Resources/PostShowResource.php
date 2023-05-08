@@ -25,7 +25,8 @@ class PostShowResource extends JsonResource
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
             'replies' => ReplyResource::collection($this->whenLoaded('replies')),
             'upvotes' => $this->upvotes,
-            'votes' => $this->whenLoaded('votes')
+            'votes' => $this->whenLoaded('votes'),
+            'created_at' => $this->created_at->locale('hu')->diffForHumans(),
         ];
     }
 }
