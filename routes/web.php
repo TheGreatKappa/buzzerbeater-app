@@ -9,6 +9,7 @@ use App\Http\Controllers\MatchController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\VotingController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\FeedbackController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -59,6 +60,8 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
     Route::resource('/forums.posts', CommunityPostController::class);
 
     Route::delete('forum/{forum_slug}/posts/{post:slug}/comments/{comment_id}', [PostCommentController::class, 'destroy'])->name('posts.comments.destroy');
+
+    Route::post('/feedback-mail', [FeedbackController::class, 'sendMail'])->name('feedback.mail');
 });
 
 Route::middleware('auth')->group(function () {

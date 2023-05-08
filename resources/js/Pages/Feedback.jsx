@@ -11,7 +11,7 @@ export default function Feedback(props) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
-        type: '',
+        option: '',
         description: '',
     });
 
@@ -21,6 +21,8 @@ export default function Feedback(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        post(route('feedback.mail'));
     };
 
     console.log(props.errors);
@@ -41,9 +43,9 @@ export default function Feedback(props) {
                 <div className="max-w-md mx-auto bg-white m-2 p-6">
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <InputLabel forInput="type" value="Észrevétel típusa" />
+                            <InputLabel forInput="option" value="Észrevétel típusa" />
 
-                            <select id="type" className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                            <select id="option" name="option" className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
                                 <option>Hiba bejelentése</option>
                                 <option>Javaslat fejlesztésre</option>
                                 <option>Egyéb javaslat</option>
@@ -74,7 +76,7 @@ export default function Feedback(props) {
                             <TextInput
                                 id="email"
                                 name="email"
-                                value={data.url}
+                                value={data.email}
                                 className="mt-1 block w-full"
                                 autoComplete="email"
                                 handleChange={onHandleChange}
