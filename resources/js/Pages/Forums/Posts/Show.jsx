@@ -5,12 +5,14 @@ import Voting from '@/Components/Voting';
 import PostSidebar from '@/Components/PostSidebar';
 
 export default function Show(props){
-    const { post, community, latest } = usePage().props;
+    const { post, community, latest, can_update, can_delete } = usePage().props;
     const [showReplyForm, setShowReplyForm] = useState(false);
 
     console.log({post});
     console.log({community});
     console.log({latest});
+    console.log(can_update);
+    console.log(can_delete);
 
     console.log(post.data.comments);
     console.log(post.data.replies);
@@ -69,10 +71,16 @@ export default function Show(props){
                                 </div>
                             </div>
                             <div>
-                                {post.data.owner ? (
+                                {can_update ? (
                                     <>
                                     <Link className="hover:text-blue-500 text-slate-500" href={route('forums.posts.edit', [community.slug, post.data.slug])}>Szerkesztés</Link>
-                                    <Link className="ml-2 hover:text-red-500 text-slate-500" href={route('forums.posts.destroy', [community.slug, post.data.slug])} method="delete">Törlés</Link>
+                                    </>
+                                ) : (
+                                    <></>
+                                )}
+                                {can_delete ? (
+                                    <>
+                                    <Link className="hover:text-red-500 text-slate-500 ml-2" href={route('forums.posts.destroy', [community.slug, post.data.slug])} method="delete">Törlés</Link>
                                     </>
                                 ) : (
                                     <></>
