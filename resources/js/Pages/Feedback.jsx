@@ -7,16 +7,22 @@ import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function Feedback(props) {
+    const [feedbackOption, setFeedbackOption] = useState("");
 
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
-        option: '',
         description: '',
+        option: '',
     });
 
     const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+        if (event.target.name === "option") {
+            setFeedbackOption(event.target.value);
+            setData(event.target.name, event.target.value);
+        } else {
+            setData(event.target.name, event.target.type === "checkbox" ? event.target.checked : event.target.value);
+        }
     };
 
     const handleSubmit = (e) => {
@@ -24,8 +30,6 @@ export default function Feedback(props) {
 
         post(route('feedback.mail'));
     };
-
-    console.log(props.errors);
 
     return (
         <AuthenticatedLayout
@@ -43,9 +47,10 @@ export default function Feedback(props) {
                 <div className="max-w-md mx-auto bg-white dark:bg-gray-600 rounded m-2 p-6">
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <InputLabel forInput="option" value="Észrevétel típusa" />
+                            <InputLabel forInput="option" value="Észrevétel típusa"/>
 
-                            <select id="option" name="option" className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                            <select id="option" name="option" onChange={onHandleChange} value={feedbackOption} className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                                <option disabled selected value="">Válassz egy opciót!</option>
                                 <option>Hiba bejelentése</option>
                                 <option>Javaslat fejlesztésre</option>
                                 <option>Egyéb javaslat</option>

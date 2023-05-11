@@ -14,9 +14,11 @@ class FeedbackController extends Controller
             'description' => Request::input('description'),
             'option' => Request::input('option'),
         ];
+
         Mail::send('emails.feedback', $data, function($message){
             $message->to(env('MAIL_FROM_ADDRESS'))->subject('Visszajelzés');
         });
+        
         return redirect()->back();
     }
 }
