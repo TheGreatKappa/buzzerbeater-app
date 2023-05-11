@@ -24,8 +24,8 @@ export default function Live(props){
                 auth={props.auth}
                 errors={props.errors}
                 header={<>
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">Élő eredmények</h2>
-                <p className="mt-2 text-gray-500">Amennyiben van aktuális mérkőzés, azoknak az eredményét itt találod.</p>
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-200">Élő eredmények</h2>
+                <p className="mt-2 text-gray-500 dark:text-gray-300">Amennyiben van aktuális mérkőzés, azoknak az eredményét itt találod.</p>
                 </>}
             >
                 <div className="py-6">
@@ -35,13 +35,13 @@ export default function Live(props){
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" className="px-6 py-3">
-                                            Home Team
+                                            Hazai csapat
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Score
+                                            Eredmény
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Visitor Team
+                                            Vendég csapat
                                         </th>
                                         <th scope="col" className="px-6 py-3">
                                         </th>

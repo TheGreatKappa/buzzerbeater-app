@@ -32,7 +32,7 @@ export default function ResetPassword({ token, email }) {
 
     return (
         <GuestLayout>
-            <Head title="Reset Password" />
+            <Head title="Új jelszó" />
 
             <form onSubmit={submit}>
                 <div>
@@ -85,7 +85,7 @@ export default function ResetPassword({ token, email }) {
 
                 <div className="flex items-center justify-end mt-4">
                     <PrimaryButton className="ml-4" processing={processing}>
-                        Reset Password
+                        Új jelszó megerősítése
                     </PrimaryButton>
                 </div>
             </form>

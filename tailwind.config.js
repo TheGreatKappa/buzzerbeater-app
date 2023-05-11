@@ -9,6 +9,8 @@ module.exports = {
         './resources/js/**/*.jsx',
     ],
 
+    darkMode: 'class',
+    
     theme: {
         extend: {
             fontFamily: {

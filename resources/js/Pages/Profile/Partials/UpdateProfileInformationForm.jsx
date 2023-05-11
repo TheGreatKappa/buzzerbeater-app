@@ -22,9 +22,9 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profilod</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-gray-300">Profilod</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-600 dark:text-gray-200">
                     Ezen a felületen megváltoztathatod a profilodhoz tartozó felhasználóneved és e-mail címed.
                 </p>
             </header>
@@ -93,7 +93,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         leaveTo="opacity-0"
                         className="transition ease-in-out"
                     >
-                        <p className="text-sm text-gray-600">Változtatásaid mentésre kerültek.</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-200">Változtatásaid mentésre kerültek.</p>
                     </Transition>
                 </div>
             </form>

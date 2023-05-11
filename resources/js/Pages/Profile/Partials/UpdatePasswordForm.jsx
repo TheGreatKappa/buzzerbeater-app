@@ -39,9 +39,9 @@ export default function UpdatePasswordForm({ className }) {
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Jelszó frissítése</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-gray-300">Jelszó frissítése</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-600 dark:text-gray-200">
                     Gondoskodj róla, hogy a jelszavad kellően biztonságos legyen.
                 </p>
             </header>
@@ -103,7 +103,7 @@ export default function UpdatePasswordForm({ className }) {
                         leaveTo="opacity-0"
                         className="transition ease-in-out"
                     >
-                        <p className="text-sm text-gray-600">Új jelszavad mentésre került.</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-200">Új jelszavad mentésre került.</p>
                     </Transition>
                 </div>
             </form>

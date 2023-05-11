@@ -46,9 +46,9 @@ export default function DeleteUserForm({ className }) {
     return (
         <section className={`space-y-6 ${className}`}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Fiók törlése</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-gray-300">Fiók törlése</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-600 dark:text-gray-200">
                     Amennyiben felhasználói fiókod törlése mellett döntesz, minden adatod véglegesen törlésre kerül.
                     Kérlek, hogy mielőtt végleges törlésre kerülne a fiókod, kérd le az összes adatodat, amit meg
                     szeretnél őrizni.
@@ -59,11 +59,11 @@ export default function DeleteUserForm({ className }) {
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
-                    <h2 className="text-lg font-medium text-gray-900">
+                    <h2 className="text-lg font-medium text-gray-900 dark:text-gray-300">
                         Biztosan törölni szeretnéd a fiókodat?
                     </h2>
 
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm text-gray-600 dark:text-gray-200">
                         Amennyiben felhasználói fiókod törlése mellett döntesz, minden adatod véglegesen törlésre kerül.
                         Írd be a jelszavad, ha valóban törölni szeretnéd a fiókodat.
                     </p>

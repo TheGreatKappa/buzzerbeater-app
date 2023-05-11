@@ -31,8 +31,8 @@ export default function ConfirmPassword() {
         <GuestLayout>
             <Head title="Jelszó megerősítése" />
 
-            <div className="mb-4 text-sm text-gray-600">
-                This is a secure area of the application. Please confirm your password before continuing.
+            <div className="mb-4 text-sm text-gray-600 dark:text-gray-200">
+                Az oldalhoz való hozzáféréshez erősítsd meg a jelszavad.
             </div>
 
             <form onSubmit={submit}>
@@ -54,7 +54,7 @@ export default function ConfirmPassword() {
 
                 <div className="flex items-center justify-end mt-4">
                     <PrimaryButton className="ml-4" processing={processing}>
-                        Confirm
+                        Megerősítés
                     </PrimaryButton>
                 </div>
             </form>

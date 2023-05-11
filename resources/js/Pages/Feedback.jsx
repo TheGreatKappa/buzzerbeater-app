@@ -31,8 +31,8 @@ export default function Feedback(props) {
         <AuthenticatedLayout
             auth = {props.auth}
             errors = {props.errors}
-            header={<><h2 className="font-semibold text-xl text-gray-800 leading-tight">Visszajelzés</h2>
-            <p className="text-gray-500 mt-2">Hibát találtál, esetleg fejlesztéssel kapcsolatos észrevételeid lennének? Küldd el nekünk az alábbi űrlapon keresztül!</p></>
+            header={<><h2 className="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-200">Visszajelzés</h2>
+            <p className="text-gray-500 mt-2 dark:text-gray-300">Hibát találtál, esetleg fejlesztéssel kapcsolatos észrevételeid lennének? Küldd el nekünk az alábbi űrlapon keresztül!</p></>
             }
         >
         
@@ -40,7 +40,7 @@ export default function Feedback(props) {
 
         <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div className="max-w-md mx-auto bg-white m-2 p-6">
+                <div className="max-w-md mx-auto bg-white dark:bg-gray-600 rounded m-2 p-6">
                     <form onSubmit={handleSubmit}>
                         <div>
                             <InputLabel forInput="option" value="Észrevétel típusa" />

@@ -11,7 +11,7 @@ export default function Dashboard(props) {
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Fórumok</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-200">Fórumok</h2>}
         >
             <Head title="Fórumok" />
 

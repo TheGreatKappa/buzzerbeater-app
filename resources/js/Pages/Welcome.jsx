@@ -17,7 +17,7 @@ export default function Welcome(props) {
         {isLoggedIn ? (
                 <GuestLayout>
                     <div>
-                        <p className="text-center">Üdvözöllek a BuzzerBeater weboldalon!<br />Bejelentkezést vagy regisztrációt követően hozzáférsz az oldal tartalmához.<br /></p>
+                        <p className="text-center dark:text-gray-200">Üdvözöllek a BuzzerBeater weboldalon!<br />Bejelentkezést vagy regisztrációt követően hozzáférsz az oldal tartalmához.<br /></p>
                     </div>
                     <div className="flex justify-evenly">
                         <Link href={route('login')}><PrimaryButton className="mt-4">Bejelentkezés</PrimaryButton></Link>
@@ -32,27 +32,27 @@ export default function Welcome(props) {
             <section className='flex flex-col md:flex-row m-2 p-2'>
                 <div className='w-full md:w-8/12'>
                 {posts.data.map(({ id, title, description, username, slug, upvotes, votes, forum_slug, comments, created_at }) => (
-                    <div className="m-3 p-6 max-w-4xl bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div className="m-3 p-6 max-w-4xl bg-white overflow-hidden shadow-sm sm:rounded-lg dark:bg-gray-600">
                         <div className="w-auto">
-                            <div className="flex m-2 p-2">
+                            <div className="flex m-2 p-2 dark:text-gray-200">
                                 <Voting post={slug} upvotes={upvotes} votes={votes.length > 0 ? votes[0].vote : 0}/>
-                                    <div className="flex items-center justify-center">
-                                        <span className="ml-1">{ username } posztja a <Link href={route('community.show', forum_slug)} className="hover:text-blue-700">{ forum_slug }</Link> fórumon { created_at }</span>
+                                    <div className="flex items-center justify-cente">
+                                        <span className="ml-1">{ username } posztja a <Link href={route('community.show', forum_slug)} className="hover:text-blue-700 dark:hover:text-indigo-300">{ forum_slug }</Link> fórumon { created_at }</span>
                                     </div>
                             </div>
                         </div>
-                        <div className="grow">
-                            <Link href={route('posts.show', [forum_slug, slug])} className="text-2xl font-bold ml-8 hover:text-blue-700">{ title }</Link>
+                        <div className="grow dark:text-gray-300">
+                            <Link href={route('posts.show', [forum_slug, slug])} className="text-2xl font-bold ml-8 hover:text-blue-700 dark:hover:text-indigo-300">{ title }</Link>
                             <p className="ml-8">{ description }</p>
                             <div className="flex m-2 p-2">
-                            <Link href={route('posts.show', [forum_slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3 ml-8 hover:text-blue-700">Hozzászólások({ comments })</Link>
+                            <Link href={route('posts.show', [forum_slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3 ml-8 hover:text-blue-700 dark:hover:text-indigo-300">Hozzászólások({ comments })</Link>
                             </div>
                         </div>
                     </div>
                 ))}
                 </div>
                 <div className='w-full md:w-4/12 p-4'>
-                    <div className=" p-2 bg-slate-500 text-white shadow-sm rounded-t-md">
+                    <div className=" p-2 bg-slate-500 text-white shadow-sm rounded-t-md dark:bg-gray-600">
                         <h2>Legnépszerűbb fórumok</h2>
                     </div>
                     <Sidebar forums={forums}/>

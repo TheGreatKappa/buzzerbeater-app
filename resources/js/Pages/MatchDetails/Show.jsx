@@ -78,10 +78,10 @@ export default function Show(props) {
             auth={props.auth}
             errors={props.errors}
             header={
-            <div className="justify-center items-center flex">
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">Mérkőzés részletei</h2>
-                <div className="ml-4 text-gray-500">{matchDate}</div>
-                <div className="ml-4 text-gray-500">{homeTeamName} {homeTeamScore} - {awayTeamScore} {awayTeamName}</div>
+            <div className="justify-center items-center grid grid-rows-3">
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-200 text-center">Mérkőzés részletei</h2>
+                <div className=" text-gray-500 dark:text-gray-300 text-center m-1">{matchDate}</div>
+                <div className=" text-gray-500 dark:text-gray-300 text-center m-1">{homeTeamName} {homeTeamScore} - {awayTeamScore} {awayTeamName}</div>
             </div>
             }
         >
@@ -89,13 +89,13 @@ export default function Show(props) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg dark:bg-slate-700">
                         <div className="py-6">
                             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                             {Object.values(playersByTeam).map(({ name, players, total }) => (
-                                <div className="relative overflow-x-auto shadow-md sm:rounded-lg" key={name}>
-                                    <h2 className="font-bold p-3">{name}</h2>
-                                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 p-2">
+                                <div className="relative overflow-x-auto shadow-md sm:rounded-lg mb-6" key={name}>
+                                    <h2 className="font-bold p-3 dark:text-gray-300">{name}</h2>
+                                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 p-2 bg:text-gray-400">
                                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                             <tr>
                                                 <th scope="col" className="px-6 py-3">
@@ -126,7 +126,7 @@ export default function Show(props) {
                                         </thead>
                                         <tbody>
                                             {players.filter(({min}) => parseInt(min) > 0).sort((a,b) => b.pts-a.pts).map(({ id, first_name, last_name, fga, fgm, fg3a, fg3m, fta, ftm, pts, reb, ast, min}) => (
-                                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={id}>
+                                                    <tr className="bg-white border-b dark:bg-gray-600 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600" key={id}>
                                                         <th scope="row" className="px-6 py-4">{ first_name }  { last_name }</th>
                                                         <td className='px-6 py-4'>{ parseInt(min) }</td>
                                                         <td className="px-6 py-4">{ fgm } - { fga }</td>
@@ -153,6 +153,9 @@ export default function Show(props) {
                                                         <td className="px-6 py-4 font-bold">{ (total.fgm / total.fga * 100).toFixed(1) }%</td>
                                                         <td className="px-6 py-4 font-bold">{ (total.fg3m / total.fg3a * 100).toFixed(1) }%</td>
                                                         <td className='px-6 py-4 font-bold'>{ (total.ftm / total.fta * 100).toFixed(1) }%</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
                                                     </tr>
             
                                                 {stats.length === 0 && (

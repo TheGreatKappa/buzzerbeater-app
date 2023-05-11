@@ -29,16 +29,16 @@ export default function Create(props){
             <AuthenticatedLayout
                 auth={props.auth}
                 errors={props.errors}
-                header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Poszt készítése</h2>}
+                header={<h2 className="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-200">Poszt készítése</h2>}
             >
                 <Head title="Poszt készítése" />
 
                 <div className="py-12">
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                        <div className="max-w-md mx-auto bg-white m-2 p-6">
+                        <div className="max-w-md mx-auto bg-white m-2 p-6 dark:bg-gray-600 rounded">
                             <form onSubmit={submit}>
                                 <div>
-                                    <InputLabel forInput="title" value="Title" />
+                                    <InputLabel forInput="title" value="Cím" />
 
                                     <TextInput
                                         id="title"
@@ -70,7 +70,7 @@ export default function Create(props){
                                 </div>
 
                                 <div className="mt-4">
-                                    <InputLabel forInput="description" value="Description" />
+                                    <InputLabel forInput="description" value="Leírás" />
 
                                     <TextInput
                                         id="description"
@@ -86,7 +86,7 @@ export default function Create(props){
 
                                 <div className="flex items-center justify-end mt-4">
                                     <PrimaryButton className="ml-4" processing={processing}>
-                                        Create
+                                        Hozzáadás
                                     </PrimaryButton>
                                 </div>
                             </form>

@@ -15,7 +15,7 @@ export default function VerifyEmail({ status }) {
         <GuestLayout>
             <Head title="E-mail megerősítés" />
 
-            <div className="mb-4 text-sm text-gray-600">
+            <div className="mb-4 text-sm text-gray-600 dark:text-gray-200">
                 Köszönjük regisztrációdat! Mielőtt belekezdenél az oldalon való böngészésbe, kérjük erősítsd meg az e-mail címed az általunk
                 küldött e-mailben található linkre kattintva. Ha nem kaptál e-mailt, küldünk egy újat.
             </div>
@@ -34,7 +34,7 @@ export default function VerifyEmail({ status }) {
                         href={route('logout')}
                         method="post"
                         as="button"
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:text-gray-300 dark:hover:text-gray-400"
                     >
                         Kijelentkezés
                     </Link>

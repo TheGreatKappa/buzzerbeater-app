@@ -35,8 +35,8 @@ export default function API(props) {
                 auth={props.auth}
                 errors={props.errors}
                 header={<>
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">Eredménykereső</h2>
-                <p className="mt-2 text-gray-500">Az eredménykereső segítségével tehetsz egy utazást a múltba, egészen az 1979-es szezonig bezárólag.</p>
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-200">Eredménykereső</h2>
+                <p className="mt-2 text-gray-500 dark:text-gray-300">Az eredménykereső segítségével tehetsz egy utazást a múltba, egészen az 1979-es szezonig bezárólag.</p>
                 </>}
             >
                 <div className="py-12 flex items-center justify-center">

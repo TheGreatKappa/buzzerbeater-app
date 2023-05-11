@@ -31,13 +31,13 @@ export default function Create(props){
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Poszt szerkesztése</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-200">Poszt szerkesztése</h2>}
         >
             <Head title="Poszt szerkesztése" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="max-w-md mx-auto bg-white m-2 p-6">
+                    <div className="max-w-md mx-auto bg-white m-2 p-6 dark:bg-gray-600">
                         <form onSubmit={submit}>
                             <div>
                             <InputLabel forInput="title" value="Title" />
