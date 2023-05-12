@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('forums', function (Blueprint $table) {
             $table->id();
-            $table->foreignID('user_id')->constrained();
+            $table->foreignID('user_id')->constrained()->onDelete('cascade');
             $table->string('name')->unique();
             $table->text('description');
             $table->string('slug')->unique();

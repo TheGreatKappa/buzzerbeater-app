@@ -18,6 +18,8 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'name' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'favorite_player' => ['nullable', 'string', 'max:255'],
+            'favorite_team' => ['nullable', 'string', 'max:255'],
         ];
     }
 }

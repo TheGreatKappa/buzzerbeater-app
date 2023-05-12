@@ -4,13 +4,16 @@ import GuestLayout from '@/Layouts/GuestLayout';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import Voting from '@/Components/Voting';
 import Sidebar from '@/Components/Sidebar';
+import RecommendedSidebar from '@/Components/RecommendedSidebar';
 
 export default function Welcome(props) {
-    const { posts, forums } = usePage().props;
+    const { posts, forums, recommended } = usePage().props;
     const isLoggedIn = Boolean(props.auth.user == null);
 
     console.log(posts);
     console.log(forums);
+    console.log(recommended);
+
     return (
         <>
         <Head title="Főoldal" />
@@ -52,10 +55,28 @@ export default function Welcome(props) {
                 ))}
                 </div>
                 <div className='w-full md:w-4/12 p-4'>
-                    <div className=" p-2 bg-slate-500 text-white shadow-sm rounded-t-md dark:bg-gray-600">
-                        <h2>Legnépszerűbb fórumok</h2>
-                    </div>
-                    <Sidebar forums={forums}/>
+                    {forums.data.length > 0 ? (
+                        <>
+                            <div className=" p-2 bg-slate-500 text-white shadow-sm rounded-t-md dark:bg-gray-600">
+                                <h2>Legnépszerűbb fórumok</h2>
+                            </div>
+                            <Sidebar forums={forums}/>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+
+                    {recommended.data.length > 0 ? (
+                        <>
+                            <div className="p-2 bg-slate-500 text-white shadow-sm rounded-t-md dark:bg-gray-600 mt-4">  
+                                <h2>Ajánlott fórumok</h2>
+                            </div>
+                            <RecommendedSidebar forums={recommended}/>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+
                 </div>
             </section>
             </AuthenticatedLayout>
