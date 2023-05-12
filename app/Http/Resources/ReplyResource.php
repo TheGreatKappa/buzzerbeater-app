@@ -19,6 +19,7 @@ class ReplyResource extends JsonResource
             'comment' => $this->content,
             'id' => $this->id,
             'parent_id' => $this->parent_id,
+            'owner' => $this->user->id === auth()->id(),
         ];
     }
 }

@@ -35,4 +35,14 @@ class PostCommentController extends Controller
 
         return back();
     }
+
+    public function destroyReply($community_slug, Post $post, $comment_id, $reply_id){
+        $reply = $post->replies()->findOrFail($reply_id);
+
+        $this->authorize('delete', $reply);
+
+        $reply->delete();
+
+        return back();
+    }
 }

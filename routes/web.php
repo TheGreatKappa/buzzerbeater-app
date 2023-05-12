@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth', 'verified',]], function () {
     Route::resource('/forums.posts', CommunityPostController::class);
 
     Route::delete('forum/{forum_slug}/posts/{post:slug}/comments/{comment_id}', [PostCommentController::class, 'destroy'])->name('posts.comments.destroy');
+    Route::delete('forum/{forum_slug}/posts/{post:slug}/comments/{comment_id}/reply/{reply_id}', [PostCommentController::class, 'destroyReply'])->name('posts.comments.reply.destroy');
 
     Route::post('/feedback-mail', [FeedbackController::class, 'sendMail'])->name('feedback.mail');
 });

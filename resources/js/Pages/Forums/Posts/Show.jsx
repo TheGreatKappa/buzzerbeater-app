@@ -6,7 +6,7 @@ import PostSidebar from '@/Components/PostSidebar';
 
 export default function Show(props){
     const { post, community, latest, can_update, can_delete } = usePage().props;
-    const [showReplyForm, setShowReplyForm] = useState(false);
+    const [showReplyForms, setShowReplyForms] = useState(false);
 
     console.log({post});
     console.log({community});
@@ -43,7 +43,7 @@ export default function Show(props){
         reply.post(route('posts.comments.reply', [community.slug, post.data.slug, comment.id]), {
             onSuccess: () => {
                 reply.reset('content'),
-                setShowReplyForm(false)
+                setShowReplyForms(false)
             }
         });
     };
@@ -119,7 +119,7 @@ export default function Show(props){
                                     <li key={comment.id} className="py-4 flex">
                                         <div className="ml-3">
                                             <span className="text-sm font-semibold text-gray-900 ml-1 dark:text-gray-400">{comment.username}</span>
-                                            { comment.owner ? (
+                                            { can_delete ? (
                                                 <>
                                                 <Link className="ml-2 hover:text-red-500 text-slate-500 dark:text-gray-200 dark:hover:text-red-500" href={route('posts.comments.destroy', [community.slug, post.data.slug, comment.id])} method="delete">Törlés</Link>
                                                 </>
@@ -130,9 +130,9 @@ export default function Show(props){
                                                 <p className="m-2 p-2">{comment.comment}</p>
                                             </div>
                                             <div>
-                                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2" onClick={() => setShowReplyForm(comment.id)}>Válasz</button>
+                                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2" onClick={() => setShowReplyForms({ ...showReplyForms, [comment.id]: !showReplyForms[comment.id] })}>Válasz</button>
                                             </div>
-                                            {showReplyForm && (
+                                            {showReplyForms[comment.id] && (
                                                 <form onSubmit={submitReply(comment.id)}>
                                                     <div>
                                                     <label
@@ -157,6 +157,29 @@ export default function Show(props){
                                                     </div>
                                                 </form>
                                             )}
+                                            {post.data.replies.map((reply) => (
+                                                <div className="m-4" key={reply.id}>
+                                                    {reply.parent_id === comment.id ? (
+                                                        <>
+                                                        <div>
+                                                            <span className="text-sm font-semibold text-gray-900 ml-1 dark:text-gray-400">{reply.username}</span>
+                                                            { can_delete ? (
+                                                                <>
+                                                                <Link className="ml-2 hover:text-red-500 text-slate-500 dark:text-gray-200 dark:hover:text-red-500" href={route('posts.comments.reply.destroy', [community.slug, post.data.slug, reply.parent_id, reply.id])} method="delete">Törlés</Link>
+                                                                </>
+                                                            ) : (
+                                                                <></>
+                                                            )}
+                                                            <div className="mt-2 text-sm text-gray-700 dark:text-gray-200">
+                                                                <p className="m-2 p-2">{reply.comment}</p>
+                                                            </div>
+                                                        </div>
+                                                        </>
+                                                    ) : (
+                                                        <></>
+                                                    )}
+                                                </div>
+                                            ))}
                                         </div>
                                     </li>
                                 ))}
@@ -181,3 +204,4 @@ export default function Show(props){
         </AuthenticatedLayout>
     )
 }
+

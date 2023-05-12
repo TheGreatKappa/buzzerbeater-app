@@ -38,7 +38,7 @@ export default function Dashboard(props) {
                             <tbody>
                                 {forums.data.map(({ id, name, slug }) => (
                                         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={id}>
-                                            <th scope="row" className="px-6 py-4"><Link href={`/forum/${slug}`} className="text-blue-500 hover:text-blue-700">{ name }</Link></th>
+                                            <th scope="row" className="px-6 py-4"><Link href={`/forum/${slug}`} className="text-blue-500 hover:text-blue-700 dark:hover:text-indigo-300">{ name }</Link></th>
                                             <td className="px-6 py-4">{ slug }</td>
                                             <td className="px-4 py-4 text-right">
                                                 <Link href={route('forums.edit', slug)} className="font-medium bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Szerkesztés</Link>
