@@ -25,12 +25,14 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [HomepageController::class, 'show'])->name('welcome');
+
 
 //Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
 //Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');
 
 Route::group(['middleware' => ['auth', 'verified',]], function () {
+    Route::get('/', [HomepageController::class, 'show'])->name('welcome');
+    
     Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
 
     Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');
