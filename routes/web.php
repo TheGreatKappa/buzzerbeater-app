@@ -31,8 +31,7 @@ use Inertia\Inertia;
 //Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');
 
 Route::group(['middleware' => ['auth', 'verified',]], function () {
-    Route::get('/', [HomepageController::class, 'show'])->name('welcome');
-    
+
     Route::get('forum/{slug}', [CommunityController::class, 'show'])->name('community.show');
 
     Route::get('forum/{forum_slug}/posts/{post:slug}', [FrontendPostController::class, 'show'])->name('posts.show');
@@ -71,6 +70,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/', [HomepageController::class, 'show'])->name('welcome');
+
 });
 
 require __DIR__.'/auth.php';
