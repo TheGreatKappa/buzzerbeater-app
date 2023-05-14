@@ -62,6 +62,11 @@
       "resources/js/app.jsx"
     ]
   },
+  "resources/css/app.css": {
+    "file": "assets/app-36c5952e.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
   "resources/js/Pages/ApiPage.jsx": {
     "file": "assets/ApiPage-26346da5.js",
     "imports": [
@@ -374,7 +379,8 @@
   },
   "resources/js/app.css": {
     "file": "assets/app-36c5952e.css",
-    "src": "resources/js/app.css"
+    "isEntry": true,
+    "src": "resources/css/app.css"
   },
   "resources/js/app.jsx": {
     "css": [
