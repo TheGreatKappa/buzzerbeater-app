@@ -5,11 +5,12 @@ import TextInput from "@/Components/TextInput";
 import InputLabel from "@/Components/InputLabel";
 import InputError from "@/Components/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
+import { Transition } from "@headlessui/react";
 
 export default function Feedback(props) {
     const [feedbackOption, setFeedbackOption] = useState("");
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset, recentlySuccessful } = useForm({
         name: '',
         email: '',
         description: '',
@@ -28,7 +29,11 @@ export default function Feedback(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        post(route('feedback.mail'));
+        post(route('feedback.mail')), {
+            onFinish: () => {
+                reset('name', 'email', 'description', 'option');
+            }
+        }
     };
 
     return (
@@ -94,23 +99,32 @@ export default function Feedback(props) {
                         <div className="mt-4">
                             <InputLabel forInput="description" value="Kifejtés" />
 
-                            <TextInput
-                                id="description"
-                                name="description"
+                            <textarea
+                                name={"description"}
+                                id={"description"}
+                                rows="4"
                                 value={data.description}
-                                className="mt-1 block w-full"
-                                autoComplete="description"
-                                handleChange={onHandleChange}
+                                onChange={onHandleChange}
+                                className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                 required
-                            />
+                            ></textarea>
 
                             <InputError message={errors.description} className="mt-2" />
                         </div>
 
-                        <div className="flex items-center justify-end mt-4">
-                            <PrimaryButton className="ml-4" processing={processing}>
-                                Visszajelzés küldése
+                        <div className="flex items-center justify-start mt-4 gap-4">
+                            <PrimaryButton processing={processing}>
+                                Küldés
                             </PrimaryButton>
+
+                            <Transition
+                                show={recentlySuccessful}
+                                enterFrom="opacity-0"
+                                leaveTo="opacity-0"
+                                className="transition ease-in-out"
+                            >
+                                <p className="text-sm text-gray-600 dark:text-gray-200">Visszajelzésed rögzítésre került.</p>
+                            </Transition>
                         </div>
                     </form>
                 </div>

@@ -24,7 +24,7 @@ class ForumStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:forums'],
+            'name' => ['required', 'unique:forums', 'min:3', 'max:255'],
 
             'description' => ['required', 'min:3']
         ];

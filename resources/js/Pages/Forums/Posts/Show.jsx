@@ -92,7 +92,7 @@ export default function Show(props){
                         </div>
                         <h1 className="font-semibold text-2xl text-black ml-4 dark:text-gray-400">{post.data.title}</h1>
                         <p className="text-slate-600 ml-4 mb-2 mt-1 dark:text-gray-300">{post.data.description}</p>
-                        <a onclick="javascript;" href={post.data.url} className="text-blue-500 font-semibold text-sm hover:text-blue-300 ml-4 mb-2 mt-1 dark:text-indigo-500 dark:hover:text-indigo-300">{post.data.url}</a>
+                        <a target="_blank" href={post.data.url} className="text-blue-500 font-semibold text-sm hover:text-blue-300 ml-4 mb-12 mt-1 dark:text-indigo-500 dark:hover:text-indigo-300">{post.data.url}</a>
                         <hr></hr>
                         <div>
                             <form className="m-2 p-2 max-w-md" onSubmit={submit}>
@@ -119,7 +119,7 @@ export default function Show(props){
                                     <li key={comment.id} className="py-4 flex">
                                         <div className="ml-3">
                                             <span className="text-sm font-semibold text-gray-900 ml-1 dark:text-gray-400">{comment.username}</span>
-                                            { can_delete ? (
+                                            { comment.owner ? (
                                                 <>
                                                 <Link className="ml-2 hover:text-red-500 text-slate-500 dark:text-gray-200 dark:hover:text-red-500" href={route('posts.comments.destroy', [community.slug, post.data.slug, comment.id])} method="delete">Törlés</Link>
                                                 </>

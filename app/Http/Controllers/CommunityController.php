@@ -16,7 +16,7 @@ class CommunityController extends Controller
             $query->where('user_id', auth()->id());
         }, 'comments'])->orderBy('upvotes', 'desc')->paginate(12));
 
-        $latest = ForumResource::collection(Forum::withCount('posts')->orderBy('posts_count', 'desc')->take(5)->get());
+        $latest = ForumResource::collection(Forum::withCount('posts')->orderBy('posts_count', 'desc')->whereNotIn('id', [$community->id])->take(5)->get());
         
         return Inertia::render('Communities/Show', compact('community', 'posts', 'latest'));
     }

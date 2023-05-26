@@ -24,6 +24,7 @@ class CommunityPostResource extends JsonResource
             'upvotes' => $this->upvotes,
             'votes' => $this->whenLoaded('votes'),
             'forum_slug' => $this->forum->slug,
+            'forum_name' => $this->forum->name,
             'comments' => CommentResource::collection($this->whenLoaded('comments'))->count(),
             'created_at' => $this->created_at->locale('hu')->diffForHumans(),
         ];

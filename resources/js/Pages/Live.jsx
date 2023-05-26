@@ -6,16 +6,28 @@ import Pagination from '@/Components/Pagination';
 export default function Live(props){
     const [games, setGames] = useState([]);
 
+    const url = 'https://api-nba-v1.p.rapidapi.com/games?live=all';
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': import.meta.env.VITE_API_KEY,
+            'x-rapidapi-host': 'api-nba-v1.p.rapidapi.com'
+        }
+    };
+
     useEffect(() => {
-        fetch(`https://www.balldontlie.io/api/v1/games`)
+        fetch(url, options)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                const filteredGames = data.data.filter(game => ['1st Qtr', '2nd Qtr', 'Halftime', '3rd Qtr', '4th Qtr'].includes(game.status));
-                setGames(filteredGames);
-        })
+                setGames(data.response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
         console.log('working');
     }, []);
+
+    console.log(games);
 
     return (
         <>
@@ -35,6 +47,12 @@ export default function Live(props){
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" className="px-6 py-3">
+                                            Negyed
+                                        </th>
+                                        <th scope="col" className="px-6 py-3">
+                                            Hátralévő idő
+                                        </th>
+                                        <th scope="col" className="px-6 py-3">
                                             Hazai csapat
                                         </th>
                                         <th scope="col" className="px-6 py-3">
@@ -48,22 +66,28 @@ export default function Live(props){
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {games.map(({ id, date, home_team, visitor_team, home_team_score, visitor_team_score }) => (
-                                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={id}>
-                                                <td className="px-6 py-4">{ home_team.full_name }</td>
-                                                <td className="px-6 py-4">{ home_team_score } - { visitor_team_score }</td>
-                                                <td className="px-6 py-4">{ visitor_team.full_name }</td>
-                                                <td><Link href={route('details.show', id)} className="font-medium bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Részletek</Link></td>
-                                            </tr>
-                                        ))}
-    
+                                    {games.map(({ id, teams, periods, scores, status }) => (
+                                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={id}>
+                                            <td className="px-6 py-4">{ periods.current }</td>
+                                            <td className="px-6 py-4">
+                                            { status.halftime === true ? (
+                                                'Félidő'
+                                            ) : (
+                                                status.clock
+                                            )}
+                                            </td>
+                                            <td className="px-6 py-4">{ teams.home.name }</td>
+                                            <td className="px-6 py-4">{ scores.home.points } - { scores.visitors.points }</td>
+                                            <td className="px-6 py-4">{ teams.visitors.name }</td>
+                                        </tr>
+                                    ))}
                                         {games.length === 0 && (
                                             <tr>
                                                 <td
                                                     className="px-6 py-4 border-t"
                                                     colSpan="4"
                                                 >
-                                                    Jelenleg nincs élő mérkőzés.
+                                                    Jelenleg nincs folyamatban mérkőzés. 
                                                 </td>
                                             </tr>
                                         )}

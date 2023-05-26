@@ -26,7 +26,7 @@ class FeedbackRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'option' => 'required|string|max:255',
         ];
     }

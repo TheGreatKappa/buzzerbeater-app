@@ -58,7 +58,7 @@ export default function Show(props) {
         return acc
     },  {})
  
-    console.log(playersByTeam);
+    // console.log(playersByTeam);
 
     const homeTeam = Object.values(playersByTeam).find(team => team.habitat === 'home');
     const awayTeam = Object.values(playersByTeam).find(team => team.habitat === 'away');

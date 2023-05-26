@@ -37,7 +37,7 @@ export default function Show(props){
                         </div>
                         <div className="dark:text-gray-300">
                             <Link href={route('posts.show', [community.slug, slug])} className="text-2xl font-bold ml-8 hover:text-blue-700 dark:text-gray-400 dark:hover:text-indigo-300">{ title }</Link>
-                            <p className="ml-8">{ description }</p>
+                            <p className="ml-8 truncate">{ description }</p>
                             <div className="flex m-2 p-2">
                             <Link href={route('posts.show', [community.slug, slug])} className="inline-flex items-center text-sm text-center px-2 py-3 ml-8 dark:hover:text-indigo-300">Hozzászólások({ comments })</Link>
                             </div>

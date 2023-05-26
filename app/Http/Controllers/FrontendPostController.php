@@ -21,7 +21,7 @@ class FrontendPostController extends Controller
 
         $post = new PostShowResource($community_post);
 
-        $latest = PostResource::collection(Post::with(['user', 'forum'])->orderBy('upvotes', 'desc')->take(5)->get());
+        $latest = PostResource::collection(Post::with(['user', 'forum'])->where('forum_id', $community->id)->whereNotIn('id', [$post->id])->orderBy('upvotes', 'desc')->take(5)->get());
 
         $can_update = Auth::user()->can('update', $community_post);
         $can_delete = Auth::user()->can('delete', $community_post);
