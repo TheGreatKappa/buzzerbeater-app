@@ -163,7 +163,7 @@ export default function Show(props){
                                                         <>
                                                         <div>
                                                             <span className="text-sm font-semibold text-gray-900 ml-1 dark:text-gray-400">{reply.username}</span>
-                                                            { can_delete ? (
+                                                            { reply.owner ? (
                                                                 <>
                                                                 <Link className="ml-2 hover:text-red-500 text-slate-500 dark:text-gray-200 dark:hover:text-red-500" href={route('posts.comments.reply.destroy', [community.slug, post.data.slug, reply.parent_id, reply.id])} method="delete">Törlés</Link>
                                                                 </>

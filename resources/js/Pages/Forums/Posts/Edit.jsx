@@ -40,7 +40,7 @@ export default function Create(props){
                     <div className="max-w-md mx-auto bg-white m-2 p-6 dark:bg-gray-600">
                         <form onSubmit={submit}>
                             <div>
-                            <InputLabel forInput="title" value="Title" />
+                            <InputLabel forInput="title" value="Cím" />
 
                             <TextInput
                                 id="title"
@@ -72,7 +72,7 @@ export default function Create(props){
                             </div>
 
                             <div className="mt-4">
-                            <InputLabel forInput="description" value="Description" />
+                            <InputLabel forInput="description" value="Leírás" />
 
                             <textarea
                                 name={"description"}
@@ -89,7 +89,7 @@ export default function Create(props){
 
                             <div className="flex items-center justify-end mt-4">
                                 <PrimaryButton className="ml-4" processing={processing}>
-                                    Edit
+                                    Szerkesztés
                                 </PrimaryButton>
                             </div>
                         </form>
