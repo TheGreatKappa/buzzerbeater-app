@@ -30,7 +30,7 @@ export default function Feedback(props) {
         e.preventDefault();
 
         post(route('feedback.mail')), {
-            onFinish: () => {
+            onSuccess: () => {
                 reset('name', 'email', 'description', 'option');
             }
         }
@@ -54,7 +54,7 @@ export default function Feedback(props) {
                         <div>
                             <InputLabel forInput="option" value="Észrevétel típusa"/>
 
-                            <select id="option" name="option" onChange={onHandleChange} value={feedbackOption} className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                            <select required id="option" name="option" onChange={onHandleChange} value={feedbackOption} className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
                                 <option disabled selected value="">Válassz egy opciót!</option>
                                 <option>Hiba bejelentése</option>
                                 <option>Javaslat fejlesztésre</option>

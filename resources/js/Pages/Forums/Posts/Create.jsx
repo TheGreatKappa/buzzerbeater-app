@@ -48,7 +48,7 @@ export default function Create(props){
                                         autoComplete="title"
                                         isFocused={true}
                                         handleChange={onHandleChange}
-                                        //required
+                                        required
                                     />
 
                                     <InputError message={errors.title} className="mt-2" />
